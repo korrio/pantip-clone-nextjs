@@ -11,15 +11,8 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import ReactTimeago from 'react-timeago'
 import SideBar from '../../components/SideBar'
-import { CREATE_TAG } from '../../graphql/mutation'
 import { NextSeo } from 'next-seo'
-import { Post } from '../../lib/mockData'
-
-import {
-  GET_EX_POSTS_BY_TAG_ID_LIMIT,
-  GET_TAG_BY_NAME,
-  SEARCH_TAGS,
-} from '../../graphql/quereis'
+import { Post, mockPosts, mockTags } from '../../lib/mockData'
 type Props = {
   posts: Post[]
   tag: string
@@ -62,7 +55,7 @@ function PageTag({ posts, tag, count, username, created_at }: Props) {
               <p className=" text-[#b39dbb]">ปรับเเต่งเเท็ก</p>
             </div>
             {posts?.map((x) => (
-              <div className=" flex  items-center space-x-2 border-b border-[#433f62] p-3 hover:bg-[#2c2a49]">
+              <div key={x.id} className=" flex  items-center space-x-2 border-b border-[#433f62] p-3 hover:bg-[#2c2a49]">
                 {x.featured && (
                   <img src={x.featured} className="h-16 w-16 object-cover" />
                 )}
@@ -99,9 +92,11 @@ function PageTag({ posts, tag, count, username, created_at }: Props) {
   )
 }
 export const getStaticProps: GetStaticProps = async (context) => {
-  const tag = context?.params?.tagname as string
-  const { getTagByName } = await GET_TAG_BY_NAME(tag)
-  if (!getTagByName) {
+  const tagName = context?.params?.tagname as string
+  
+  // Find the tag by name in mock data
+  const tagData = mockTags.find(t => t.tag === tagName)
+  if (!tagData) {
     return {
       redirect: {
         destination: '/404',
@@ -109,22 +104,26 @@ export const getStaticProps: GetStaticProps = async (context) => {
       },
     }
   }
-  const { getPostByTagIdWithLimitPaging } = await GET_EX_POSTS_BY_TAG_ID_LIMIT(getTagByName.id)
-  const posts: Post[] = getPostByTagIdWithLimitPaging
+  
+  // Get posts that have this tag, sorted by creation date (newest first)
+  const posts: Post[] = mockPosts
+    .filter(post => post.tag.tag === tagName)
+    .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+    .slice(0, 20) // Limit to 20 posts
+  
   return {
     props: {
       posts,
-      tag,
-      count: getTagByName.count?.count || 0,
-      username: getTagByName.username,
-      created_at: getTagByName.created_at,
+      tag: tagName,
+      count: tagData.count?.count || posts.length,
+      username: tagData.username,
+      created_at: tagData.created_at,
     },
     // Next.js will attempt to re-generate the page:
     // - When a request comes in
     // - At most once every 10 seconds
     revalidate: 60, // In seconds
   }
-  // ...
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {

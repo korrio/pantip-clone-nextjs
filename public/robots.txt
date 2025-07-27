@@ -55,4 +55,3 @@ Crawl-delay: 1
 
 # Sitemap location
 Sitemap: https://pantip.com/sitemap.xml
-Sitemap: https://pantip.com/api/sitemap.xml

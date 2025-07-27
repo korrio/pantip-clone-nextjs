@@ -1318,3 +1318,37 @@ export const getSuggestTopicPopular = (params: {
     }, 500)
   })
 }
+
+// Category API functions
+export const getCategoryById = (categoryId: string): Promise<{ getCategoryById: Category | null }> => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const category = mockCategories.find(c => c.id === categoryId)
+      resolve({ getCategoryById: category || null })
+    }, 300)
+  })
+}
+
+export const getPostsByCategory = (categoryId: string, limit: number = 20): Promise<{ getPostsByCategory: Post[] }> => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      // Map category IDs to tag IDs for filtering
+      const categoryToTagMap: { [key: string]: string[] } = {
+        'tech': ['1'], // เทคโนโลยี
+        'entertainment': ['2'], // บันเทิง
+        'sports': ['3'], // กีฬา
+        'food': ['4'], // อาหาร
+        'travel': ['5'], // ท่องเที่ยว
+        'lifestyle': ['3'] // ไลฟ์สไตล์ (using sports for beauty/health posts)
+      }
+      
+      const tagIds = categoryToTagMap[categoryId] || []
+      const filteredPosts = mockPosts
+        .filter(post => tagIds.includes(post.tag_id))
+        .slice(0, limit)
+        .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+      
+      resolve({ getPostsByCategory: filteredPosts })
+    }, 400)
+  })
+}

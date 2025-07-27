@@ -15,8 +15,7 @@ import { type } from 'os'
 import ReactTimeago from 'react-timeago'
 import SideBar from '../components/SideBar'
 import CategoryGrid from '../components/CategoryGrid'
-import { GET_POST_WITH_LIMIT } from '../graphql/quereis'
-import { Post } from '../lib/mockData'
+import { Post, mockPosts } from '../lib/mockData'
 type Props = {
   posts: Post[]
 }
@@ -78,8 +77,11 @@ const Home: NextPage = ({ posts }: Props) => {
   )
 }
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { getPostWithLimit } = await GET_POST_WITH_LIMIT(20)
-  const posts: Post[] = getPostWithLimit
+  // Get the latest posts from mock data, sorted by creation date (newest first)
+  const posts: Post[] = mockPosts
+    .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+    .slice(0, 20)
+  
   return {
     props: { posts },
   }

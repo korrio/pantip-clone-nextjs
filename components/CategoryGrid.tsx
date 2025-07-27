@@ -44,6 +44,32 @@ const categories: Category[] = [
 function CategoryGrid() {
   // Display only first 24 categories (2 rows of 12 each)
   const displayCategories = categories.slice(0, 24)
+  
+  // Map forum categories to our category page routes
+  const getCategoryLink = (category: Category) => {
+    const categoryMappings: { [key: string]: string } = {
+      'food': '/category/food',
+      'camera': '/category/tech',
+      'gadget': '/category/tech', 
+      'siliconvalley': '/category/tech',
+      'mbk': '/category/tech',
+      'chalermkrung': '/category/entertainment',
+      'chalermthai': '/category/entertainment',
+      'tvshow': '/category/entertainment',
+      'cartoon': '/category/entertainment',
+      'korea': '/category/entertainment',
+      'beauty': '/category/lifestyle',
+      'home': '/category/lifestyle',
+      'family': '/category/lifestyle',
+      'bangrak': '/category/lifestyle',
+      'horoscope': '/category/lifestyle',
+      'blueplanet': '/category/travel',
+      'klaibann': '/category/travel',
+      'region': '/category/travel'
+    }
+    
+    return categoryMappings[category.name_en] || `/category/${category.name_en}`
+  }
 
   return (
     <div className="mx-auto mt-5 max-w-4xl">
@@ -55,8 +81,9 @@ function CategoryGrid() {
         <div className="p-4">
           <div className="grid grid-cols-6 gap-3 md:grid-cols-12">
             {displayCategories.map((category) => (
-              <div
+              <Link
                 key={category.id}
+                href={getCategoryLink(category)}
                 className="group cursor-pointer"
                 title={category.description}
               >
@@ -87,7 +114,7 @@ function CategoryGrid() {
                     {category.name}
                   </span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
