@@ -28,10 +28,8 @@ function SideBar() {
       </div>
       {/* Content */}
       {tags?.map((tag) => (
-        <Link href={`/tag/${tag.tag}`}>
-          <div className=" cursor-pointer border-b border-[#44416f] p-3 text-sm text-gray-400 last:border-0 hover:bg-[#2d2a49]">
-            {tag.tag}
-          </div>
+        <Link key={tag.tag} href={`/tag/${tag.tag}`} className="cursor-pointer border-b border-[#44416f] p-3 text-sm text-gray-400 last:border-0 hover:bg-[#2d2a49] block">
+          {tag.tag}
         </Link>
       ))}
     </div>

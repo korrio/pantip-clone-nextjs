@@ -1,0 +1,58 @@
+# Robots.txt for Pantip Clone
+# Allow access to major search engines and AI bots
+
+User-agent: *
+Allow: /
+
+# Allow specific AI bots
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Bard
+Allow: /
+
+User-agent: Gemini
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+# Block admin and sensitive areas (not applicable but good practice)
+User-agent: *
+Disallow: /admin/
+Disallow: /api/
+Disallow: /.env
+Disallow: /node_modules/
+
+# Allow access to static assets
+User-agent: *
+Allow: /favicon.ico
+Allow: /robots.txt
+Allow: /sitemap.xml
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.gif$
+Allow: /*.svg$
+Allow: /*.webp$
+
+# Crawl-delay for bots (be respectful)
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://pantip.com/sitemap.xml
+Sitemap: https://pantip.com/api/sitemap.xml

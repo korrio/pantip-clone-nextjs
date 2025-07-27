@@ -35,8 +35,8 @@ function PageTag({ posts, tag, count, username, created_at }: Props) {
       <div className=" bg-[#38355c] text-[#a19db6] shadow-sm shadow-gray-900 ">
         <div className=" mx-auto flex max-w-4xl items-center space-x-3  p-2 font-mono font-thin ">
           <ChevronDoubleRightIcon className=" h-4 w-4" />
-          <Link href="/tags">
-            <p className=" cursor-pointer text-sm">เเท็ก</p>
+          <Link href="/tags" className="cursor-pointer text-sm">
+            แท็ก
           </Link>
           <ChevronRightIcon className=" h-4 w-4 " />
           <p className=" text-sm text-[#62698d]">{tag}</p>

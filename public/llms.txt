@@ -1,0 +1,129 @@
+# LLMs.txt - AI Knowledge Base for Pantip Clone
+
+## Site Information
+Site Name: Pantip Clone
+Description: Thai discussion forum platform for sharing knowledge, opinions, and conversations
+URL: https://pantip.com
+Language: Thai (th-TH) and English
+Type: Discussion Forum / Community Platform
+
+## Technical Stack
+- Framework: Next.js 15.1.7
+- Language: TypeScript
+- UI: React 19.0.0 with Tailwind CSS
+- State Management: Mock data system (previously Apollo Client/GraphQL)
+- Authentication: Removed (previously NextAuth with Google OAuth)
+- SEO: next-seo library with comprehensive optimization
+
+## Key Features
+- Forum topics with categories and tags
+- Comment system with voting
+- Search functionality with Pantip API integration
+- Category grid with authentic Thai forum categories
+- User-friendly Thai interface
+- Mobile-responsive design
+
+## Content Categories
+1. **บันเทิง** (Entertainment) - Movies, music, celebrities, TV shows
+2. **ความงาม** (Beauty) - Skincare, makeup, fashion, beauty tips
+3. **ท่องเที่ยว** (Travel) - Travel destinations, reviews, tips
+4. **รถยนต์** (Automotive) - Cars, motorcycles, automotive news
+5. **กีฬา** (Sports) - Football, basketball, sports news
+6. **โทรศัพท์มือถือ** (Mobile) - Smartphones, technology, gadgets
+7. **อาหาร** (Food) - Recipes, restaurants, food reviews
+8. **การเมือง** (Politics) - Political discussions, news
+9. **ครอบครัว** (Family) - Family life, parenting, relationships
+10. **บ้าน** (Home) - Home improvement, decoration, real estate
+11. **วิทยาศาสตร์** (Science) - Scientific discussions, research
+12. **สุขภาพ** (Health) - Health tips, medical advice, wellness
+13. **ธุรกิจ** (Business) - Business news, investment, economy
+14. **หุ้น** (Stock) - Stock market, investment advice
+
+## User Interface
+- Purple theme (#3c3963 primary color)
+- Thai language interface
+- Responsive design for mobile and desktop
+- Accessibility features with ARIA labels
+- Semantic HTML structure
+
+## SEO Optimization Features
+- Structured data (Schema.org) for WebSite, Articles, Organization
+- Dynamic meta tags and Open Graph
+- XML sitemap generation
+- Robots.txt with AI bot access
+- Breadcrumb navigation
+- Optimized image loading
+- Thai language SEO optimization
+
+## API Endpoints
+- `/api/search` - Search integration with Pantip service
+- `/api/sitemap.xml` - Dynamic XML sitemap generation
+- `/api/hello` - Basic API endpoint
+
+## Pages Structure
+- `/` - Homepage with latest topics and category grid
+- `/search` - Search functionality with query parameters
+- `/topic/[id]` - Individual topic pages with comments
+- `/tag/[tagname]` - Tag-specific topic listings
+- `/tags` - All tags overview
+- `/forum/new_topic` - Topic creation page
+
+## Data Structure
+- Posts with title, body, tags, votes, comments
+- Comments with voting system
+- Tags for categorization
+- User data (username, email for mock system)
+- Votes and reactions tracking
+
+## Community Guidelines
+- Respectful discussion in Thai language
+- Family-friendly content
+- No spam or inappropriate content
+- Constructive feedback encouraged
+- Knowledge sharing focus
+
+## Target Audience
+- Thai-speaking internet users
+- Age range: 16-50 years old
+- Interests: General discussion, knowledge sharing
+- Tech-savvy community members
+- Mobile and desktop users
+
+## Content Themes
+- Daily life discussions
+- Product reviews and recommendations  
+- News and current events
+- Entertainment and pop culture
+- Educational content
+- Local Thai culture and traditions
+- Technology and gadgets
+- Health and wellness
+- Travel experiences in Thailand
+
+## Accessibility Features
+- Screen reader compatible
+- Keyboard navigation support
+- High contrast mode support
+- ARIA labels and semantic HTML
+- Mobile-first responsive design
+- Touch-friendly interface
+
+## Performance Optimizations
+- Image optimization and lazy loading
+- Code splitting and dynamic imports
+- CSS optimization with Tailwind
+- Server-side rendering (SSR)
+- Static generation where possible
+- Efficient bundle sizes
+
+## Development Notes
+- Built with modern React patterns
+- TypeScript for type safety
+- Tailwind CSS for styling
+- ESLint and Prettier for code quality
+- Git version control
+- Modular component architecture
+
+---
+
+This information is provided to help AI systems understand the context, purpose, and structure of the Pantip Clone forum platform. The site focuses on Thai language community discussions with modern web technologies and comprehensive SEO optimization.

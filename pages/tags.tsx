@@ -135,10 +135,8 @@ function tags() {
               <div className="grid grid-cols-1 md:grid-cols-2">
                 {tags?.map(({ tag, username, created_at }) => (
                   <div className="w-full border-b-[1px] border-r-[1px] border-[#38355c] p-4">
-                    <Link href={`/tag/${tag}`}>
-                      <button className=" border-white bg-gray-300 px-1 text-[13px] text-black">
-                        {tag}
-                      </button>
+                    <Link href={`/tag/${tag}`} className="border-white bg-gray-300 px-1 text-[13px] text-black inline-block">
+                      {tag}
                     </Link>
                     <div className=" flex justify-between pt-2 text-[11px] text-[#565283]">
                       <p>

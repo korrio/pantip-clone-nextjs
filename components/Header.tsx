@@ -1,54 +1,59 @@
 import React from 'react'
 import { BellIcon, ChatIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
+import Image from 'next/image'
 import SearchBox from './SearchBox'
 
 function Header() {
   return (
-    <div className=" bg-[#232144]">
-      <div className="container mx-auto  flex max-w-5xl flex-col">
-        <img src="/banner.png" alt="" className=" h" />
-        <div className=" textV mx-2 flex items-center border border-gray-900 bg-[#2d2a49]   font-mono text-sm	  font-thin  shadow-sm ">
-          <Link href="/">
-            <div className=" cursor-pointer border-r  border-gray-900 p-3 hover:bg-[#3c3963]">
-              <p className=" ">หน้าเเรก</p>
-            </div>
+    <header className="bg-[#232144]" role="banner">
+      <div className="container mx-auto flex max-w-5xl flex-col">
+        <Image 
+          src="/banner.png" 
+          alt="Pantip Logo" 
+          width={1200} 
+          height={120} 
+          priority
+          className="h-auto w-full"
+        />
+        <nav className="textV mx-2 flex items-center border border-gray-900 bg-[#2d2a49] font-mono text-sm font-thin shadow-sm" role="navigation" aria-label="Main navigation">
+          <Link href="/" className="cursor-pointer border-r border-gray-900 p-3 hover:bg-[#3c3963] block" aria-label="หน้าแรก">
+            หน้าแรก
           </Link>
-          {/* <div className=" cursor-pointer border-r  border-gray-900 p-3 hover:bg-[#3c3963]">
-            <p className="  ">เลือกห้อง</p>
-          </div> */}
-          <Link href="/tags">
-            <div className=" cursor-pointer border-r  border-gray-900 p-3 hover:bg-[#3c3963]">
-              <p className="  ">เเท็ก</p>
-            </div>
+          
+          <Link href="/tags" className="cursor-pointer border-r border-gray-900 p-3 hover:bg-[#3c3963] block" aria-label="แท็ก">
+            แท็ก
           </Link>
-          <div className=" hidden cursor-pointer  border-r border-gray-900 p-3 hover:bg-[#3c3963] lg:inline">
-            <p className="  ">กิจกรรม</p>
-          </div>
-          <div className=" hidden cursor-pointer  border-r border-gray-900 p-3 hover:bg-[#3c3963] lg:inline">
-            <p className="  ">เเลกพอยต์</p>
-          </div>
-          <div className=" hidden cursor-pointer  border-r border-gray-900 p-3 hover:bg-[#3c3963] lg:inline">
-            <p className="  ">อื่นๆ</p>
-          </div>
+          
+          <button className="hidden cursor-pointer border-r border-gray-900 p-3 hover:bg-[#3c3963] lg:inline" aria-label="กิจกรรม">
+            กิจกรรม
+          </button>
+          
+          <button className="hidden cursor-pointer border-r border-gray-900 p-3 hover:bg-[#3c3963] lg:inline" aria-label="แลกพอยต์">
+            แลกพอยต์
+          </button>
+          
+          <button className="hidden cursor-pointer border-r border-gray-900 p-3 hover:bg-[#3c3963] lg:inline" aria-label="อื่นๆ">
+            อื่นๆ
+          </button>
+          
           <SearchBox />
-          <Link href="/forum/new_topic">
-            <div className="  hidden  cursor-pointer items-center space-x-1 border-r border-gray-900  p-3 hover:bg-[#3c3963] md:flex">
-              <ChatIcon className="h-5 w-5" />
-              <p className="  ">ตั้งกระทู้</p>
-            </div>
+          
+          <Link href="/forum/new_topic" className="hidden cursor-pointer items-center space-x-1 border-r border-gray-900 p-3 hover:bg-[#3c3963] md:flex" aria-label="ตั้งกระทู้">
+            <ChatIcon className="h-5 w-5" aria-hidden="true" />
+            <span>ตั้งกระทู้</span>
           </Link>
-          <div className=" hidden cursor-pointer items-center  space-x-1 border-r border-gray-900 p-3 hover:bg-[#3c3963]  md:flex">
-            <BellIcon className="h-5 w-5" />
+          
+          <button className="hidden cursor-pointer items-center space-x-1 border-r border-gray-900 p-3 hover:bg-[#3c3963] md:flex" aria-label="การแจ้งเตือน">
+            <BellIcon className="h-5 w-5" aria-hidden="true" />
+          </button>
+          
+          <div className="cursor-pointer px-2" role="status" aria-label="สถานะผู้ใช้">
+            <span>ผู้เยี่ยมชม</span>
           </div>
-          <div className=" cursor-pointer  px-2 ">
-            <p className="  ">
-              ผู้เยี่ยมชม
-            </p>
-          </div>
-        </div>
+        </nav>
       </div>
-    </div>
+    </header>
   )
 }
 
