@@ -1,6 +1,7 @@
 import React from 'react'
-import { BellIcon, ChatIcon, SearchIcon } from '@heroicons/react/outline'
+import { BellIcon, ChatIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
+import SearchBox from './SearchBox'
 
 function Header() {
   return (
@@ -30,14 +31,7 @@ function Header() {
           <div className=" hidden cursor-pointer  border-r border-gray-900 p-3 hover:bg-[#3c3963] lg:inline">
             <p className="  ">อื่นๆ</p>
           </div>
-          <div className=" mx-3 flex flex-1 items-center  space-x-2  border-r border-gray-900 bg-[#44416f] p-1  shadow-inner">
-            <input
-              type="text"
-              placeholder="ค้นหาบน Pantip"
-              className=" flex-1 bg-transparent outline-none"
-            />
-            <SearchIcon className="h-4 w-4 to-gray-400" />
-          </div>
+          <SearchBox />
           <Link href="/forum/new_topic">
             <div className="  hidden  cursor-pointer items-center space-x-1 border-r border-gray-900  p-3 hover:bg-[#3c3963] md:flex">
               <ChatIcon className="h-5 w-5" />

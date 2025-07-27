@@ -82,7 +82,7 @@ function tags() {
           <div className="  flex flex-1 items-center  space-x-2  border-r border-gray-900 bg-[#44416f] p-1  shadow-inner">
             <input
               type="text"
-              placeholder="ค้นหาบน Pantip"
+              placeholder="ค้นหา Tag"
               className=" flex-1 bg-transparent outline-none"
             />
             <SearchIcon className="h-4 w-4 to-gray-400" />
