@@ -68,8 +68,12 @@ function CategoryGrid() {
                       className="h-8 w-8"
                       onError={(e) => {
                         // Fallback icon if image fails to load
-                        e.currentTarget.style.display = 'none'
-                        e.currentTarget.nextElementSibling!.style.display = 'block'
+                        const target = e.currentTarget as HTMLImageElement
+                        const fallback = target.nextElementSibling as HTMLDivElement
+                        if (target && fallback) {
+                          target.style.display = 'none'
+                          fallback.style.display = 'flex'
+                        }
                       }}
                     />
                     <div 
