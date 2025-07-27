@@ -3,11 +3,9 @@ import { LocationMarkerIcon } from '@heroicons/react/solid'
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
-import { CREATE_TAG } from '../graphql/mutation'
-import { GET_TAGS_LIST, GET_TAG_BY_NAME } from '../graphql/quereis'
 import TimeAgo from 'react-timeago'
 import Link from 'next/link'
-import { Tag } from '../lib/mockData'
+import { Tag, getTagsList, getTagByName, insertTag } from '../lib/mockData'
 
 type FormData = {
   create_tag: string
@@ -19,7 +17,7 @@ function tags() {
   useEffect(() => {
     const loadTags = async () => {
       try {
-        const { getTagList } = await GET_TAGS_LIST()
+        const { getTagList } = await getTagsList()
         setTags(getTagList)
       } catch (error) {
         console.error('Error loading tags:', error)
@@ -44,13 +42,13 @@ function tags() {
     const notification = toast.loading('กำลังสร้างเเท็ก..')
 
     try {
-      const { getTagByName } = await GET_TAG_BY_NAME(formdata.create_tag)
+      const { getTagByName: existingTag } = await getTagByName(formdata.create_tag)
 
-      if (!getTagByName) {
-        const { insertTag } = await CREATE_TAG('ผู้ใช้งาน', formdata.create_tag)
+      if (!existingTag) {
+        const { insertTag: newTag } = await insertTag('ผู้ใช้งาน', formdata.create_tag)
         
         // Refresh tags list
-        const { getTagList } = await GET_TAGS_LIST()
+        const { getTagList } = await getTagsList()
         setTags(getTagList)
         
         setValue('create_tag', '')
@@ -133,18 +131,18 @@ function tags() {
               </form>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2">
-                {tags?.map(({ tag, username, created_at }) => (
-                  <div className="w-full border-b-[1px] border-r-[1px] border-[#38355c] p-4">
-                    <Link href={`/tag/${tag}`} className="border-white bg-gray-300 px-1 text-[13px] text-black inline-block">
-                      {tag}
+                {tags?.map((tagItem) => (
+                  <div key={tagItem.id} className="w-full border-b-[1px] border-r-[1px] border-[#38355c] p-4">
+                    <Link href={`/tag/${tagItem.tag}`} className="border-white bg-gray-300 px-1 text-[13px] text-black inline-block">
+                      {tagItem.tag}
                     </Link>
                     <div className=" flex justify-between pt-2 text-[11px] text-[#565283]">
                       <p>
                         สร้างโดย{' '}
-                        <span className=" text-[#706533]">{username}</span>
+                        <span className=" text-[#706533]">{tagItem.username}</span>
                         {'  '} เมื่อ {'  '}{' '}
                         <span className=" text-[10px]">
-                          <TimeAgo date={created_at} />{' '}
+                          <TimeAgo date={tagItem.created_at} />{' '}
                         </span>
                       </p>
                       <button className=" rounded-sm bg-[#7459c8] px-3 text-white">

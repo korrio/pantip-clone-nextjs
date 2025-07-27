@@ -9,15 +9,13 @@ import {
 } from '@heroicons/react/solid'
 import Link from 'next/link'
 import React, { useState, useEffect } from 'react'
-import { SEARCH_TAGS } from '../../graphql/quereis'
 import { GetServerSideProps } from 'next'
 import useDebounce from '../../utils/custom-hooks/useDebounce'
 import { useForm } from 'react-hook-form'
-import { CREATE_POST } from '../../graphql/mutation'
 import toast from 'react-hot-toast'
 import { useRouter } from 'next/router'
 import Model from '../../components/Modal'
-import { Tag } from '../../lib/mockData'
+import { Tag, mockTags, searchTagWithLimit, insertPost } from '../../lib/mockData'
 
 type Props = {
   tag?: String
@@ -56,8 +54,8 @@ function new_topic({ tag = '', limit = 20 }: Props) {
   // Load tags when search changes
   useDebounce(async () => {
     try {
-      const { searchTagWithLimit } = await SEARCH_TAGS(search, 20)
-      setTags(searchTagWithLimit)
+      const { searchTagWithLimit: searchResults } = await searchTagWithLimit(search, 20)
+      setTags(searchResults)
     } catch (error) {
       console.error('Error searching tags:', error)
     }
@@ -67,8 +65,8 @@ function new_topic({ tag = '', limit = 20 }: Props) {
   useEffect(() => {
     const loadInitialTags = async () => {
       try {
-        const { searchTagWithLimit } = await SEARCH_TAGS('', 20)
-        setTags(searchTagWithLimit)
+        const { searchTagWithLimit: searchResults } = await searchTagWithLimit('', 20)
+        setTags(searchResults)
       } catch (error) {
         console.error('Error loading initial tags:', error)
       }
@@ -86,7 +84,7 @@ function new_topic({ tag = '', limit = 20 }: Props) {
       if (/\[IMG\](.*?)\[\/IMG\]/g.test(formdata.body)) {
         featured = /\[IMG\](.*?)\[\/IMG\]/g.exec(formdata.body)![1]
       }
-      const { insertPost } = await CREATE_POST({
+      const { insertPost: newPost } = await insertPost({
         title: formdata.title,
         body: formdata.body,
         tag_id: selectedTag.id,
@@ -103,7 +101,7 @@ function new_topic({ tag = '', limit = 20 }: Props) {
       toast.success('สร้างกระทู้สำเร็จ!', {
         id: notification,
       })
-      router.push(`/topic/${insertPost.id}`)
+      router.push(`/topic/${newPost.id}`)
     } catch (error) {
       return toast.error('สร้างกระทู้ไม่สำเร็จ!', {
         id: notification,
@@ -235,7 +233,7 @@ function new_topic({ tag = '', limit = 20 }: Props) {
                 </p>{' '}
                 <p
                   className=" cursor-pointer pl-11 text-[11px] hover:text-[#f7f57c]  hover:underline"
-                  onClick={() => setSelectedTag('')}
+                  onClick={() => setSelectedTag(null)}
                 >
                   ยกเลิก
                 </p>
@@ -257,8 +255,9 @@ function new_topic({ tag = '', limit = 20 }: Props) {
               <div className=" flex  h-[250px] flex-col  overflow-y-auto border border-[#1e53b6] text-[13px] text-gray-300">
                 {tags?.map((x) => (
                   <div
+                    key={x.id}
                     className={` cursor-pointer border border-[#1e53b6] p-1 hover:bg-[#20355e] ${
-                      selectedTag === x && 'bg-[#1a2c50]'
+                      selectedTag?.id === x.id && 'bg-[#1a2c50]'
                     }  `}
                     onClick={() => setSelectedTag(x)}
                   >
