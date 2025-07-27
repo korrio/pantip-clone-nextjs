@@ -38,6 +38,7 @@ const Home: NextPage = ({ posts }: Props) => {
           </div>
           {posts?.map((x: any) => (
             <div
+              key={x.id}
               className=" flex  items-center space-x-2 border-b border-[#433f62] p-3 hover:bg-[#2c2a49]"
               onClick={() => router.push(`/topic/${x.id}`)}
             >
