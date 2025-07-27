@@ -1,23 +1,36 @@
-import { useMutation, useQuery } from '@apollo/client'
 import { SearchIcon } from '@heroicons/react/outline'
 import { LocationMarkerIcon } from '@heroicons/react/solid'
 import { useSession } from 'next-auth/react'
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
-import client from '../apollo-client'
 import { CREATE_TAG } from '../graphql/mutation'
 import { GET_TAGS_LIST, GET_TAG_BY_NAME } from '../graphql/quereis'
 import TimeAgo from 'react-timeago'
 import Link from 'next/link'
+import { Tag } from '../lib/mockData'
 
 type FormData = {
   create_tag: string
 }
 function tags() {
   const { data: session } = useSession()
+  const [tags, setTags] = useState<Tag[]>([])
+  const [loading, setLoading] = useState(true)
 
-  const { data } = useQuery(GET_TAGS_LIST)
+  useEffect(() => {
+    const loadTags = async () => {
+      try {
+        const { getTagList } = await GET_TAGS_LIST()
+        setTags(getTagList)
+      } catch (error) {
+        console.error('Error loading tags:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+    loadTags()
+  }, [])
 
   const [left, setLeft] = useState<boolean>(false)
   const {
@@ -27,34 +40,21 @@ function tags() {
     setValue,
     formState: { errors },
   } = useForm<FormData>()
-
-  const [createTag] = useMutation(CREATE_TAG, {
-    refetchQueries: [GET_TAGS_LIST],
-  })
   // When the user submits the form, we want to create a new tag
   const onSubmit = handleSubmit(async (formdata) => {
     console.log(formdata)
     const notification = toast.loading('กำลังสร้างเเท็ก..')
 
     try {
-      const {
-        data: { getTagByName },
-      } = await client.query({
-        query: GET_TAG_BY_NAME,
-        variables: {
-          tag: formdata.create_tag,
-        },
-      })
+      const { getTagByName } = await GET_TAG_BY_NAME(formdata.create_tag)
 
       if (!getTagByName) {
-        const {
-          data: { insertTag },
-        } = await createTag({
-          variables: {
-            tag: formdata.create_tag,
-            username: session?.user?.name,
-          },
-        })
+        const { insertTag } = await CREATE_TAG(session?.user?.name || '', formdata.create_tag)
+        
+        // Refresh tags list
+        const { getTagList } = await GET_TAGS_LIST()
+        setTags(getTagList)
+        
         setValue('create_tag', '')
         return toast.success('สร้างเเท็กสำเร็จ!', {
           id: notification,
@@ -70,8 +70,6 @@ function tags() {
       })
     }
   })
-
-  const tags: [Tag] = data?.getTagList
   return (
     <div>
       <div className=" textV bg-[#38355c] shadow-sm shadow-gray-900">

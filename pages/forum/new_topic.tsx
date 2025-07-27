@@ -1,4 +1,3 @@
-import { useMutation, useQuery } from '@apollo/client'
 import {
   ChevronDoubleRightIcon,
   ChevronRightIcon,
@@ -9,7 +8,7 @@ import {
   TagIcon,
 } from '@heroicons/react/solid'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { SEARCH_TAGS } from '../../graphql/quereis'
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
@@ -20,6 +19,7 @@ import { CREATE_POST } from '../../graphql/mutation'
 import toast from 'react-hot-toast'
 import { useRouter } from 'next/router'
 import Model from '../../components/Modal'
+import { Tag } from '../../lib/mockData'
 
 type Props = {
   tag?: String
@@ -37,10 +37,9 @@ function new_topic({ tag = '', limit = 20, cook }: Props) {
   const [isLink, setIsLink] = useState<boolean>(true)
 
   const [search, setSearch] = useState<string>('')
-  const [selectedTag, setSelectedTag] = useState<any>()
+  const [selectedTag, setSelectedTag] = useState<Tag | null>(null)
   const [temp, setTemp] = useState<string>('')
-
-  const [creatPost] = useMutation(CREATE_POST)
+  const [tags, setTags] = useState<Tag[]>([])
 
   const {
     register,
@@ -50,16 +49,29 @@ function new_topic({ tag = '', limit = 20, cook }: Props) {
     getValues,
     formState: { errors },
   } = useForm<FormData>()
-  // refecthQueries
-  useDebounce(() => refetch({ tag: search, limit: 20 }), 200, [search])
-  const { data, refetch } = useQuery(SEARCH_TAGS, {
-    variables: {
-      limit,
-      tag,
-    },
-  })
 
-  const tags: [Tag] = data?.searchTagWithLimit
+  // Load tags when search changes
+  useDebounce(async () => {
+    try {
+      const { searchTagWithLimit } = await SEARCH_TAGS(search, 20)
+      setTags(searchTagWithLimit)
+    } catch (error) {
+      console.error('Error searching tags:', error)
+    }
+  }, 200, [search])
+
+  // Initial load of tags
+  useEffect(() => {
+    const loadInitialTags = async () => {
+      try {
+        const { searchTagWithLimit } = await SEARCH_TAGS('', 20)
+        setTags(searchTagWithLimit)
+      } catch (error) {
+        console.error('Error loading initial tags:', error)
+      }
+    }
+    loadInitialTags()
+  }, [])
 
   const onSubmit = handleSubmit(async (formdata) => {
     if (!selectedTag) {
@@ -71,20 +83,16 @@ function new_topic({ tag = '', limit = 20, cook }: Props) {
       if (/\[IMG\](.*?)\[\/IMG\]/g.test(formdata.body)) {
         featured = /\[IMG\](.*?)\[\/IMG\]/g.exec(formdata.body)![1]
       }
-      const {
-        data: { insertPost },
-      } = await creatPost({
-        variables: {
-          title: formdata.title,
-          body: formdata.body,
-          tag_id: selectedTag.id,
-          username: cook?.user?.name,
-          email: cook?.user?.email,
-          featured: featured,
-          profile: `https://avatars.dicebear.com/api/open-peeps/${
-            cook?.user?.email || 'placeholder'
-          }.svg`,
-        },
+      const { insertPost } = await CREATE_POST({
+        title: formdata.title,
+        body: formdata.body,
+        tag_id: selectedTag.id,
+        username: cook?.user?.name || '',
+        email: cook?.user?.email || '',
+        featured: featured,
+        profile: `https://avatars.dicebear.com/api/open-peeps/${
+          cook?.user?.email || 'placeholder'
+        }.svg`,
       })
 
       setValue('title', '')

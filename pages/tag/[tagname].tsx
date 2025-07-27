@@ -1,4 +1,3 @@
-import { useMutation } from '@apollo/client'
 import {
   ChevronDoubleRightIcon,
   ChevronRightIcon,
@@ -11,10 +10,10 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 import ReactTimeago from 'react-timeago'
-import client from '../../apollo-client'
 import SideBar from '../../components/SideBar'
 import { CREATE_TAG } from '../../graphql/mutation'
 import { NextSeo } from 'next-seo'
+import { Post } from '../../lib/mockData'
 
 import {
   GET_EX_POSTS_BY_TAG_ID_LIMIT,
@@ -22,7 +21,7 @@ import {
   SEARCH_TAGS,
 } from '../../graphql/quereis'
 type Props = {
-  posts: [Topic]
+  posts: Post[]
   tag: string
   count: number
   username: string
@@ -100,13 +99,8 @@ function PageTag({ posts, tag, count, username, created_at }: Props) {
   )
 }
 export const getStaticProps: GetStaticProps = async (context) => {
-  const tag = context?.params?.tagname
-  const {
-    data: { getTagByName },
-  } = await client.query({
-    query: GET_TAG_BY_NAME,
-    variables: { tag: tag },
-  })
+  const tag = context?.params?.tagname as string
+  const { getTagByName } = await GET_TAG_BY_NAME(tag)
   if (!getTagByName) {
     return {
       redirect: {
@@ -115,18 +109,13 @@ export const getStaticProps: GetStaticProps = async (context) => {
       },
     }
   }
-  const {
-    data: { getPostByTagIdWithLimitPaging },
-  } = await client.query({
-    query: GET_EX_POSTS_BY_TAG_ID_LIMIT,
-    variables: { tag_id: getTagByName?.id },
-  })
-  const posts: [Topic] = getPostByTagIdWithLimitPaging
+  const { getPostByTagIdWithLimitPaging } = await GET_EX_POSTS_BY_TAG_ID_LIMIT(getTagByName.id)
+  const posts: Post[] = getPostByTagIdWithLimitPaging
   return {
     props: {
       posts,
       tag,
-      count: getTagByName.count.count,
+      count: getTagByName.count?.count || 0,
       username: getTagByName.username,
       created_at: getTagByName.created_at,
     },

@@ -1,4 +1,3 @@
-import { useMutation, useQuery } from '@apollo/client'
 import { ChatAlt2Icon } from '@heroicons/react/outline'
 import {
   ChatIcon,
@@ -11,9 +10,8 @@ import {
 import { GetServerSideProps } from 'next'
 import { signIn, useSession } from 'next-auth/react'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import ReactTimeago from 'react-timeago'
-import client from '../../apollo-client'
 import { GET_POST_BY_ID } from '../../graphql/quereis'
 import tags from '../tags'
 import parse from 'html-react-parser'
@@ -27,27 +25,30 @@ import {
   DELETE_VOTE_BY_ID,
 } from '../../graphql/mutation'
 import { NextSeo } from 'next-seo'
+import { Post, Comment, Vote } from '../../lib/mockData'
 
 type Props = {
   id: string
-  topic: Topic
+  topic: Post
 }
 type FormData = {
   body: string
 }
-function Topic({ id, topic }: Props) {
-  const { data } = useQuery(GET_POST_BY_ID, {
-    variables: { id },
-  })
-  const [cComment] = useMutation(CREATE_COMMENT, {
-    refetchQueries: [GET_POST_BY_ID, 'getPostById'],
-  })
-  const [vVote] = useMutation(CREATE_VOTE_BY_ID, {
-    refetchQueries: [GET_POST_BY_ID, 'getPostById'],
-  })
-  const [cVote] = useMutation(CREATE_VOTE_BY_CM_ID, {
-    refetchQueries: [GET_POST_BY_ID, 'getPostById'],
-  })
+function Topic({ id, topic: initialTopic }: Props) {
+  const [topic, setTopic] = useState<Post>(initialTopic)
+  const [loading, setLoading] = useState(false)
+
+  // Refresh topic data
+  const refreshTopic = async () => {
+    try {
+      const { getPostById } = await GET_POST_BY_ID(id)
+      if (getPostById) {
+        setTopic(getPostById)
+      }
+    } catch (error) {
+      console.error('Error refreshing topic:', error)
+    }
+  }
 
   const {
     register,
@@ -59,21 +60,18 @@ function Topic({ id, topic }: Props) {
   } = useForm<FormData>()
   const { data: session } = useSession()
 
-  const onVoteComment = async (comment: Comemnt) => {
+  const onVoteComment = async (comment: Comment) => {
     if (!session) return
 
     const email = session?.user?.email
+    if (!email) return
+
     try {
       if (comment.votes.find((v) => v.email === email)) {
+        // Already voted - could implement unvote here
       } else {
-        const {
-          data: { inserVoteComment },
-        } = await cVote({
-          variables: {
-            comment_id: comment.id,
-            email,
-          },
-        })
+        await CREATE_VOTE_BY_CM_ID(comment.id, email)
+        await refreshTopic()
       }
     } catch (error) {
       console.log(error)
@@ -83,17 +81,14 @@ function Topic({ id, topic }: Props) {
     if (!session) return
 
     const email = session?.user?.email
+    if (!email) return
+
     try {
       if (topic.votes.find((v) => v.email === email)) {
+        // Already voted - could implement unvote here
       } else {
-        const {
-          data: { inserVote },
-        } = await vVote({
-          variables: {
-            post_id: id,
-            email,
-          },
-        })
+        await CREATE_VOTE_BY_ID(id, email)
+        await refreshTopic()
       }
     } catch (error) {
       console.log(error)
@@ -103,25 +98,20 @@ function Topic({ id, topic }: Props) {
   const onSubmit = handleSubmit(async (formdata) => {
     const notification = toast.loading('กำลังสร้างคอมเมนต์..')
     try {
-      const {
-        data: { createComment },
-      } = await cComment({
-        variables: {
-          body: formdata.body,
-          post_id: id,
-          username: session?.user?.name,
-          email: session?.user?.email,
-        },
+      await CREATE_COMMENT({
+        body: formdata.body,
+        post_id: id,
+        username: session?.user?.name || '',
+        email: session?.user?.email || '',
       })
 
       setValue('body', '')
+      await refreshTopic()
       toast.success('สร้างคอมเมนต์เรียบร้อยแล้ว', { id: notification })
     } catch (error) {
       toast.error('ไม่สามารถสร้างคอมเเมนต์', { id: notification })
     }
   })
-
-  topic = data ? data?.getPostById : topic
   const rawBody = convertToTopic(topic?.body ?? '')
   return (
     <div className=" mx-auto mt-8 flex max-w-4xl flex-col space-y-4 ">
@@ -290,12 +280,7 @@ function Topic({ id, topic }: Props) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const {
-    data: { getPostById },
-  } = await client.query({
-    query: GET_POST_BY_ID,
-    variables: { id: context.query.id },
-  })
+  const { getPostById } = await GET_POST_BY_ID(String(context.query.id))
   if (!getPostById) {
     return {
       redirect: {

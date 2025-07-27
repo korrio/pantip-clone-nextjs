@@ -3,14 +3,11 @@ import type { AppProps } from 'next/app'
 import { SessionProvider } from 'next-auth/react'
 import Header from '../components/Header'
 import { Toaster } from 'react-hot-toast'
-import { ApolloProvider } from '@apollo/client'
-import client from '../apollo-client'
 import Footer from '../components/Footer'
 import { DefaultSeo } from 'next-seo'
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: any) {
   return (
-    <ApolloProvider client={client}>
       <SessionProvider session={session}>
         <div className="h-screen overflow-y-scroll bg-[#3c3963]">
           <DefaultSeo
@@ -35,7 +32,6 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: any) {
           <Footer />
         </div>
       </SessionProvider>
-    </ApolloProvider>
   )
 }
 

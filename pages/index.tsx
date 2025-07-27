@@ -13,13 +13,13 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { type } from 'os'
 import ReactTimeago from 'react-timeago'
-import client from '../apollo-client'
 import SideBar from '../components/SideBar'
 import { GET_POST_WITH_LIMIT } from '../graphql/quereis'
+import { Post } from '../lib/mockData'
 type Props = {
-  posts: [Topic]
+  posts: Post[]
 }
-const Home: NextPage = ({ posts }: any) => {
+const Home: NextPage = ({ posts }: Props) => {
   const router = useRouter()
 
   return (
@@ -70,12 +70,8 @@ const Home: NextPage = ({ posts }: any) => {
   )
 }
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const {
-    data: { getPostWithLimit },
-  } = await client.query({
-    query: GET_POST_WITH_LIMIT,
-  })
-  const posts: [Topic] = getPostWithLimit
+  const { getPostWithLimit } = await GET_POST_WITH_LIMIT(20)
+  const posts: Post[] = getPostWithLimit
   return {
     props: { posts },
   }

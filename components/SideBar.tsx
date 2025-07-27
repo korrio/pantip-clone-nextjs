@@ -1,16 +1,22 @@
-import { useQuery } from '@apollo/client'
 import Link from 'next/link'
-import React from 'react'
-import { GET_TAGS_LIST, SEARCH_TAGS } from '../graphql/quereis'
+import React, { useEffect, useState } from 'react'
+import { SEARCH_TAGS } from '../graphql/quereis'
+import { Tag } from '../lib/mockData'
 
 function SideBar() {
-  const { data } = useQuery(SEARCH_TAGS, {
-    variables: {
-      limit: 10,
-      tag: '',
-    },
-  })
-  const tags: [Tag] = data?.searchTagWithLimit
+  const [tags, setTags] = useState<Tag[]>([])
+
+  useEffect(() => {
+    const loadTags = async () => {
+      try {
+        const { searchTagWithLimit } = await SEARCH_TAGS('', 10)
+        setTags(searchTagWithLimit)
+      } catch (error) {
+        console.error('Error loading tags:', error)
+      }
+    }
+    loadTags()
+  }, [])
   return (
     <div className="sticky top-3 z-50 hidden h-fit w-[280px] overflow-y-hidden rounded-md border-[1px] border-[#44416f] shadow-md  md:inline">
       {/* Header */}
