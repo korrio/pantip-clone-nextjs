@@ -248,7 +248,7 @@ function new_topic({ tag = '', limit = 20 }: Props) {
                 <input
                   value={search}
                   type="text"
-                  placeholder="ค้นหาบน Pantip"
+                  placeholder="ค้นหา Tag"
                   className=" flex-1 bg-transparent outline-none"
                   onChange={(e) => setSearch(e.target.value)}
                 />
