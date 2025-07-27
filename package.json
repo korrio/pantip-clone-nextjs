@@ -10,7 +10,6 @@
     "html-react-parser": "^1.4.12",
     "html-to-react": "^1.4.8",
     "next": "latest",
-    "next-auth": "^4.3.4",
     "next-seo": "^5.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

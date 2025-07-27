@@ -14,6 +14,7 @@ import { useRouter } from 'next/router'
 import { type } from 'os'
 import ReactTimeago from 'react-timeago'
 import SideBar from '../components/SideBar'
+import CategoryGrid from '../components/CategoryGrid'
 import { GET_POST_WITH_LIMIT } from '../graphql/quereis'
 import { Post } from '../lib/mockData'
 type Props = {
@@ -23,9 +24,14 @@ const Home: NextPage = ({ posts }: Props) => {
   const router = useRouter()
 
   return (
-    <div className="  mx-auto mt-5 max-w-4xl">
-      <div className="  flex space-x-6  ">
-        <div className="flex-1 rounded-md border-[1px] border-gray-800 bg-[#353156] shadow-md">
+    <div>
+      {/* Category Grid */}
+      <CategoryGrid />
+      
+      {/* Main Content */}
+      <div className="mx-auto mt-5 max-w-4xl">
+        <div className="flex space-x-6">
+          <div className="flex-1 rounded-md border-[1px] border-gray-800 bg-[#353156] shadow-md">
           <div className=" flex justify-between border-b border-[#7976a0] bg-[#1f1d33] p-2">
             <p className=" text-yellow-400">กระทู้ล่าสุด</p>
             <p className=" text-[#b39dbb]">ปรับเเต่งเเท็ก</p>
@@ -64,7 +70,8 @@ const Home: NextPage = ({ posts }: Props) => {
             </div>
           ))}
         </div>
-        <SideBar />
+          <SideBar />
+        </div>
       </div>
     </div>
   )

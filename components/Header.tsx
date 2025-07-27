@@ -1,11 +1,8 @@
 import React from 'react'
 import { BellIcon, ChatIcon, SearchIcon } from '@heroicons/react/outline'
-import { signIn, signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
 
 function Header() {
-  const { data: session } = useSession()
-  console.log(session)
   return (
     <div className=" bg-[#232144]">
       <div className="container mx-auto  flex max-w-5xl flex-col">
@@ -51,20 +48,9 @@ function Header() {
             <BellIcon className="h-5 w-5" />
           </div>
           <div className=" cursor-pointer  px-2 ">
-            {session ? (
-              <img
-                src={`https://avatars.dicebear.com/api/open-peeps/${
-                  session?.user?.email || 'placeholder'
-                }.svg`}
-                alt=""
-                className=" h-8 w-8 rounded-full"
-                onClick={() => signOut()}
-              />
-            ) : (
-              <p className="  " onClick={() => signIn()}>
-                เข้าสู่ระบบ / สมัครสมาชิก
-              </p>
-            )}
+            <p className="  ">
+              ผู้เยี่ยมชม
+            </p>
           </div>
         </div>
       </div>

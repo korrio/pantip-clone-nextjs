@@ -1,6 +1,5 @@
 import { SearchIcon } from '@heroicons/react/outline'
 import { LocationMarkerIcon } from '@heroicons/react/solid'
-import { useSession } from 'next-auth/react'
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
@@ -14,7 +13,6 @@ type FormData = {
   create_tag: string
 }
 function tags() {
-  const { data: session } = useSession()
   const [tags, setTags] = useState<Tag[]>([])
   const [loading, setLoading] = useState(true)
 
@@ -49,7 +47,7 @@ function tags() {
       const { getTagByName } = await GET_TAG_BY_NAME(formdata.create_tag)
 
       if (!getTagByName) {
-        const { insertTag } = await CREATE_TAG(session?.user?.name || '', formdata.create_tag)
+        const { insertTag } = await CREATE_TAG('ผู้ใช้งาน', formdata.create_tag)
         
         // Refresh tags list
         const { getTagList } = await GET_TAGS_LIST()
@@ -122,14 +120,13 @@ function tags() {
                     {...register('create_tag', {
                       required: true,
                     })}
-                    disabled={!session}
-                    placeholder={session ? 'สร้างเเท็ก' : 'กรุณาเข้าสู่ระบบ'}
+                    placeholder={'สร้างเเท็ก'}
                     className=" flex-1 bg-transparent px-3 outline-none"
                   />
                 </div>
                 <button
                   className=" w-[100px] rounded-sm bg-[#201d35] px-5 text-yellow-500 shadow-sm"
-                  disabled={!watch('create_tag') || !session}
+                  disabled={!watch('create_tag')}
                 >
                   สร้าง
                 </button>

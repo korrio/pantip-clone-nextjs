@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a Pantip clone - a Thai discussion forum platform built with Next.js, TypeScript, Tailwind CSS, Apollo Client, and StepZen for GraphQL API management. The application uses NextAuth for Google OAuth authentication and connects to a PostgreSQL database through StepZen's GraphQL layer.
+This is a Pantip clone - a Thai discussion forum platform built with Next.js, TypeScript, and Tailwind CSS. The application uses mock data for content and runs completely client-side without external dependencies or authentication.
 
 ## Development Commands
 
@@ -24,37 +24,38 @@ npm start
 ### Core Stack
 - **Framework**: Next.js with TypeScript
 - **Styling**: Tailwind CSS
-- **State Management**: Apollo Client for GraphQL state
-- **Authentication**: NextAuth with Google OAuth
-- **Database**: PostgreSQL via StepZen GraphQL API
-- **API Layer**: StepZen for database abstraction
+- **State Management**: React useState/useEffect hooks
+- **Authentication**: Removed (no authentication required)
+- **Data**: Mock data with local state management
+- **API Layer**: Mock functions simulating database operations
 
 ### Key Directories
-- `pages/` - Next.js pages and API routes
+- `pages/` - Next.js pages
 - `components/` - Reusable React components (Header, Footer, Modal, SideBar)
-- `graphql/` - GraphQL queries and mutations
-- `stepzen/` - StepZen configuration and PostgreSQL schema
+- `lib/` - Mock data definitions and API functions
+- `graphql/` - Mock data functions (renamed from GraphQL)
 - `utils/` - Custom hooks and utility functions
 - `styles/` - Global CSS and Tailwind configuration
 
-### Database Schema
-The application uses PostgreSQL with these main entities:
+### Mock Data Schema
+The application uses TypeScript interfaces for mock data entities:
 - **Post**: Forum topics with title, body, tag association, votes, and comments
 - **Comment**: Replies to posts with voting capability
 - **Tag**: Categories for organizing posts
 - **Vote**: User voting system for posts and comments
-- **Reaction**: User reactions to content
+- **Announcement**: Site announcements and news
+- **Category**: Content categories for organization
 
-### GraphQL Architecture
-- StepZen endpoint: `https://plovdiv.stepzen.net/api/opulent-lightningbug/__graphql`
-- Authentication via `NEXT_PUBLIC_STEPZEN_KEY` environment variable
-- Schema defined in `stepzen/postgresql/postgresql.graphql`
-- Queries and mutations in `graphql/quereis.ts` and `graphql/mutation.ts`
+### Mock Data Architecture
+- Mock data defined in `lib/mockData.ts`
+- Simulated async operations with Promise-based functions
+- Thai language content with realistic forum discussions
+- Functions in `graphql/quereis.ts` and `graphql/mutation.ts` now reference mock data
 
-### Authentication Flow
-- Google OAuth via NextAuth
-- Session management through SessionProvider
-- User data includes email, username, and profile information
+### User System
+- No authentication required
+- Uses mock user data ("ผู้ใช้งาน") for interactions
+- All users can create posts, comments, and vote without login
 
 ### Key Features
 - Forum topic creation with tag association
@@ -64,11 +65,10 @@ The application uses PostgreSQL with these main entities:
 - Real-time toast notifications
 - SEO optimization with next-seo
 
-### Environment Variables Required
-- `NEXT_PUBLIC_STEPZEN_KEY` - StepZen API authentication
-- `GOOGLE_CLIENT_ID` - Google OAuth client ID
-- `GOOGLE_CLIENT_SECRET` - Google OAuth client secret
-- `URL` - Base URL for SEO and OpenGraph metadata
+### Environment Variables (Optional)
+- `URL` - Base URL for SEO and OpenGraph metadata (optional)
+
+Note: No external API keys or authentication variables are required.
 
 ### Custom Hooks
 - `useDebounce.ts` - Debouncing input values
@@ -78,4 +78,6 @@ The application uses PostgreSQL with these main entities:
 - The application is primarily in Thai language
 - Uses custom purple theme (`bg-[#3c3963]`)
 - No test framework is currently configured
-- Apollo Client handles all GraphQL operations and caching
+- All data operations use mock functions with simulated async behavior
+- No external dependencies required for core functionality
+- Fully offline-capable forum simulation

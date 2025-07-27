@@ -8,7 +8,6 @@ import {
   StarIcon,
 } from '@heroicons/react/solid'
 import { GetServerSideProps } from 'next'
-import { signIn, useSession } from 'next-auth/react'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import ReactTimeago from 'react-timeago'
@@ -58,13 +57,14 @@ function Topic({ id, topic: initialTopic }: Props) {
     getValues,
     formState: { errors },
   } = useForm<FormData>()
-  const { data: session } = useSession()
+  // Removed authentication - now using mock user data
+  const mockUser = {
+    name: 'ผู้ใช้งาน',
+    email: 'user@example.com'
+  }
 
   const onVoteComment = async (comment: Comment) => {
-    if (!session) return
-
-    const email = session?.user?.email
-    if (!email) return
+    const email = mockUser.email
 
     try {
       if (comment.votes.find((v) => v.email === email)) {
@@ -78,10 +78,7 @@ function Topic({ id, topic: initialTopic }: Props) {
     }
   }
   const onVotePost = async () => {
-    if (!session) return
-
-    const email = session?.user?.email
-    if (!email) return
+    const email = mockUser.email
 
     try {
       if (topic.votes.find((v) => v.email === email)) {
@@ -101,8 +98,8 @@ function Topic({ id, topic: initialTopic }: Props) {
       await CREATE_COMMENT({
         body: formdata.body,
         post_id: id,
-        username: session?.user?.name || '',
-        email: session?.user?.email || '',
+        username: mockUser.name,
+        email: mockUser.email,
       })
 
       setValue('body', '')
@@ -179,7 +176,6 @@ function Topic({ id, topic: initialTopic }: Props) {
           <hr className="w-8 flex-1 text-[#b8b0d3] opacity-20" />{' '}
         </div>
         <div className=" border border-[#686595] bg-[#083a43] px-14 pt-2">
-          {session ? (
             <form onSubmit={onSubmit}>
               <div className="bg-[#0e5c6a] ">
                 <textarea
@@ -205,27 +201,15 @@ function Topic({ id, topic: initialTopic }: Props) {
                 <div className=" flex items-center space-x-2 text-[12px] text-white">
                   <img
                     src={`https://avatars.dicebear.com/api/open-peeps/${
-                      session?.user?.email || 'placeholder'
+                      mockUser.email || 'placeholder'
                     }.svg`}
                     alt=""
                     className=" h-5 w-5 border border-gray-400"
                   />
-                  <p>{session?.user?.name} </p>
+                  <p>{mockUser.name} </p>
                 </div>
               </div>
             </form>
-          ) : (
-            <div className=" flex flex-col items-center space-y-4 p-8 text-white">
-              <p>คุณสามารถแสดงความคิดเห็นกับกระทู้นี้ได้ด้วยการเข้าสู่ระบบ</p>
-              <button
-                onClick={() => signIn()}
-                type="submit"
-                className=" rounded-sm border-2 border-violet-800 bg-[#7b32cf] px-2 py-1 text-sm shadow-inner  shadow-yellow-100 hover:bg-[#8537dd]"
-              >
-                ลงชื่อเข้าใช้
-              </button>
-            </div>
-          )}
         </div>
         <div className=" flex items-center space-x-3">
           <hr className="w-8 text-[#b8b0d3] opacity-20" />

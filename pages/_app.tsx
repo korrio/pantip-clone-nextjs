@@ -1,14 +1,12 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
-import { SessionProvider } from 'next-auth/react'
 import Header from '../components/Header'
 import { Toaster } from 'react-hot-toast'
 import Footer from '../components/Footer'
 import { DefaultSeo } from 'next-seo'
 
-function MyApp({ Component, pageProps: { session, ...pageProps } }: any) {
+function MyApp({ Component, pageProps }: AppProps) {
   return (
-      <SessionProvider session={session}>
         <div className="h-screen overflow-y-scroll bg-[#3c3963]">
           <DefaultSeo
             canonical={process.env.URL}
@@ -31,7 +29,6 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: any) {
           <Component {...pageProps} />
           <Footer />
         </div>
-      </SessionProvider>
   )
 }
 

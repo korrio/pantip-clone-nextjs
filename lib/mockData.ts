@@ -60,39 +60,40 @@ export const mockTags: Tag[] = [
     tag: 'เทคโนโลยี',
     created_at: '2024-01-15T10:30:00Z',
     username: 'techguru',
-    count: { count: 25 }
+    count: { count: 3 }
   },
   {
     id: '2', 
     tag: 'บันเทิง',
     created_at: '2024-01-14T15:45:00Z',
     username: 'movie_lover',
-    count: { count: 42 }
+    count: { count: 3 }
   },
   {
     id: '3',
     tag: 'กีฬา',
     created_at: '2024-01-13T09:20:00Z',
     username: 'sportsfan',
-    count: { count: 18 }
+    count: { count: 3 }
   },
   {
     id: '4',
     tag: 'อาหาร',
     created_at: '2024-01-12T16:10:00Z',
     username: 'foodie123',
-    count: { count: 33 }
+    count: { count: 3 }
   },
   {
     id: '5',
     tag: 'ท่องเที่ยว',
     created_at: '2024-01-11T11:55:00Z',
     username: 'traveler',
-    count: { count: 29 }
+    count: { count: 3 }
   }
 ]
 
 export const mockPosts: Post[] = [
+  // เทคโนโลยี posts
   {
     id: '1',
     title: 'แนะนำเทคโนโลยี AI ใหม่ล่าสุด',
@@ -120,6 +121,66 @@ export const mockPosts: Post[] = [
     ]
   },
   {
+    id: '4',
+    title: 'รีวิว iPhone 15 Pro Max ใช้งานจริง',
+    body: 'หลังจากใช้งาน iPhone 15 Pro Max มา 2 เดือน อยากมาแชร์ประสบการณ์การใช้งานจริง ทั้งจุดดีและจุดที่ควรปรับปรุง...',
+    featured: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=800',
+    tag_id: '1',
+    username: 'iphonereview',
+    created_at: '2024-01-19T16:20:00Z',
+    email: 'iphonereview@example.com',
+    profile: 'https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=100',
+    tag: mockTags[0],
+    comments: [
+      {
+        id: '4',
+        body: 'กล้องดีจริงมั้ย เทียบกับ Samsung ล่าสุด',
+        created_at: '2024-01-19T17:00:00Z',
+        email: 'samsung_fan@example.com',
+        username: 'samsung_fan',
+        votes: []
+      },
+      {
+        id: '5',
+        body: 'แบตเตอรี่ทนขนาดไหน ใช้หนักๆ อยู่ได้กี่ชั่วโมง',
+        created_at: '2024-01-19T18:30:00Z',
+        email: 'battery_concern@example.com',
+        username: 'battery_concern',
+        votes: []
+      }
+    ],
+    votes: [
+      { id: '3', email: 'tech1@example.com' },
+      { id: '4', email: 'tech2@example.com' },
+      { id: '5', email: 'tech3@example.com' }
+    ]
+  },
+  {
+    id: '5',
+    title: 'ปัญหา Windows 11 Update ล่าสุด',
+    body: 'มีใครเจอปัญหากับ Windows 11 version ล่าสุดมั้ย คอมค้าง Blue Screen บ่อยมาก หลังจาก update...',
+    featured: 'https://images.unsplash.com/photo-1633419461186-7d40a38105ec?w=800',
+    tag_id: '1',
+    username: 'windowsuser',
+    created_at: '2024-01-18T10:15:00Z',
+    email: 'windowsuser@example.com',
+    profile: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100',
+    tag: mockTags[0],
+    comments: [
+      {
+        id: '6',
+        body: 'ผมเจอเหมือนกัน แก้โดยการ rollback driver graphics card',
+        created_at: '2024-01-18T11:00:00Z',
+        email: 'techsolver@example.com',
+        username: 'techsolver',
+        votes: [{ id: '6', email: 'helpful1@example.com' }]
+      }
+    ],
+    votes: [{ id: '7', email: 'problem_sharer@example.com' }]
+  },
+
+  // บันเทิง posts
+  {
     id: '2',
     title: 'รีวิวหนังใหม่ที่น่าสนใจ',
     body: 'หนังเรื่องล่าสุดที่เข้าฉายในโรงภาพยนตร์ มีเนื้อเรื่องที่น่าติดตาม และการแสดงที่ยอดเยี่ยม...',
@@ -132,9 +193,72 @@ export const mockPosts: Post[] = [
     tag: mockTags[1],
     comments: [],
     votes: [
-      { id: '3', email: 'voter3@example.com' }
+      { id: '8', email: 'voter3@example.com' }
     ]
   },
+  {
+    id: '6',
+    title: 'แนะนำซีรีส์เกาหลีน่าดู 2024',
+    body: 'รวมซีรีส์เกาหลีที่กำลังฮิตและน่าติดตามในปี 2024 มีทั้งแนวโรแมนติก แอคชั่น และ thriller...',
+    featured: 'https://images.unsplash.com/photo-1594736797933-d0d8c77b7daa?w=800',
+    tag_id: '2',
+    username: 'kdrama_fan',
+    created_at: '2024-01-17T19:30:00Z',
+    email: 'kdrama_fan@example.com',
+    profile: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100',
+    tag: mockTags[1],
+    comments: [
+      {
+        id: '7',
+        body: 'Queen of Tears ดีมากจริงๆ น้ำตาไหลทุกตอน',
+        created_at: '2024-01-17T20:00:00Z',
+        email: 'tears_queen@example.com',
+        username: 'tears_queen',
+        votes: []
+      },
+      {
+        id: '8',
+        body: 'มี Lovely Runner อยู่มั้ย ดูแล้วติดมาก',
+        created_at: '2024-01-17T21:15:00Z',
+        email: 'lovely_runner@example.com',
+        username: 'lovely_runner',
+        votes: []
+      }
+    ],
+    votes: [
+      { id: '9', email: 'kdrama1@example.com' },
+      { id: '10', email: 'kdrama2@example.com' }
+    ]
+  },
+  {
+    id: '7',
+    title: 'คอนเสิร์ต Taylor Swift ที่สิงคโปร์',
+    body: 'ใครไปดูคอนเสิร์ต Taylor Swift The Eras Tour ที่สิงคโปร์มาบ้าง มาแชร์ประสบการณ์กัน...',
+    featured: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800',
+    tag_id: '2',
+    username: 'swiftie_th',
+    created_at: '2024-01-16T22:00:00Z',
+    email: 'swiftie_th@example.com',
+    profile: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100',
+    tag: mockTags[1],
+    comments: [
+      {
+        id: '9',
+        body: 'ไปมาแล้ว มันส์มากกกก เสียงดี แสงสีสวย',
+        created_at: '2024-01-16T23:30:00Z',
+        email: 'concert_goer@example.com',
+        username: 'concert_goer',
+        votes: [{ id: '11', email: 'jealous1@example.com' }]
+      }
+    ],
+    votes: [
+      { id: '12', email: 'swiftie1@example.com' },
+      { id: '13', email: 'swiftie2@example.com' },
+      { id: '14', email: 'swiftie3@example.com' }
+    ]
+  },
+
+  // กีฬา posts
   {
     id: '3',
     title: 'สถิติฟุตบอลไทยลีก ฤดูกาลใหม่',
@@ -165,6 +289,262 @@ export const mockPosts: Post[] = [
       }
     ],
     votes: []
+  },
+  {
+    id: '8',
+    title: 'ผลการแข่งขัน Premier League วันนี้',
+    body: 'สรุปผลการแข่งขัน Premier League คืนที่ผ่านมา Manchester City พบ Arsenal จบ 2-1...',
+    featured: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=800',
+    tag_id: '3',
+    username: 'epl_watcher',
+    created_at: '2024-01-15T23:45:00Z',
+    email: 'epl_watcher@example.com',
+    profile: 'https://images.unsplash.com/photo-1566492031773-4f4e44671d66?w=100',
+    tag: mockTags[2],
+    comments: [
+      {
+        id: '10',
+        body: 'Haaland เก่งจริงๆ ยิงได้ 2 ลูก',
+        created_at: '2024-01-16T00:15:00Z',
+        email: 'haaland_fan@example.com',
+        username: 'haaland_fan',
+        votes: []
+      }
+    ],
+    votes: [
+      { id: '15', email: 'city_fan@example.com' },
+      { id: '16', email: 'football_fan@example.com' }
+    ]
+  },
+  {
+    id: '9',
+    title: 'เทคนิคการวิ่งสำหรับมือใหม่',
+    body: 'สำหรับใครที่เพิ่งเริ่มต้นวิ่ง มาดูเทคนิคพื้นฐานที่จะช่วยให้วิ่งได้อย่างถูกต้องและไม่บาดเจ็บ...',
+    featured: 'https://images.unsplash.com/photo-1544717297-fa95b6ee9643?w=800',
+    tag_id: '3',
+    username: 'runner_coach',
+    created_at: '2024-01-14T06:30:00Z',
+    email: 'runner_coach@example.com',
+    profile: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=100',
+    tag: mockTags[2],
+    comments: [
+      {
+        id: '11',
+        body: 'ขอบคุณมากครับ เพิ่งเริ่มวิ่งพอดี',
+        created_at: '2024-01-14T07:00:00Z',
+        email: 'newbie_runner@example.com',
+        username: 'newbie_runner',
+        votes: []
+      },
+      {
+        id: '12',
+        body: 'ควรวิ่งวันละกี่กิโลเหมาะสมครับ',
+        created_at: '2024-01-14T08:15:00Z',
+        email: 'beginner_q@example.com',
+        username: 'beginner_q',
+        votes: []
+      }
+    ],
+    votes: [
+      { id: '17', email: 'fitness1@example.com' },
+      { id: '18', email: 'health_lover@example.com' }
+    ]
+  },
+
+  // อาหาร posts
+  {
+    id: '10',
+    title: 'สูตรต้มยำกุ้งแม่น้ำต้นตำรับ',
+    body: 'วันนี้มาแชร์สูตรต้มยำกุ้งแม่น้ำที่ทำง่าย อร่อย เปรื้อยมากกกก วัตถุดิบหาง่าย ทำได้ที่บ้าน...',
+    featured: 'https://images.unsplash.com/photo-1569562211093-4ed0d0758f12?w=800',
+    tag_id: '4',
+    username: 'chef_home',
+    created_at: '2024-01-13T18:20:00Z',
+    email: 'chef_home@example.com',
+    profile: 'https://images.unsplash.com/photo-1596040001589-e1caec6aa87e?w=100',
+    tag: mockTags[3],
+    comments: [
+      {
+        id: '13',
+        body: 'ทำตามแล้ว อร่อยมากกก ขอบคุณครับ',
+        created_at: '2024-01-13T19:30:00Z',
+        email: 'tomyam_lover@example.com',
+        username: 'tomyam_lover',
+        votes: [{ id: '19', email: 'grateful1@example.com' }]
+      },
+      {
+        id: '14',
+        body: 'น้ำพริกเผาใส่ยี่ห้อไหนดีครับ',
+        created_at: '2024-01-13T20:00:00Z',
+        email: 'ingredient_q@example.com',
+        username: 'ingredient_q',
+        votes: []
+      }
+    ],
+    votes: [
+      { id: '20', email: 'cooking1@example.com' },
+      { id: '21', email: 'thai_food@example.com' },
+      { id: '22', email: 'recipe_collector@example.com' }
+    ]
+  },
+  {
+    id: '11',
+    title: 'ร้านอาหารอีสานเจ้าเด็ด ย่านสีลม',
+    body: 'เจอร้านอาหารอีสานเจ้าเด็ดมากก ส้มตำรสจัดจ้าน ลาบหมูสดใหม่ ราคาประหยัด บรรยากาศดี...',
+    featured: 'https://images.unsplash.com/photo-1559847844-d9cfb0267ab4?w=800',
+    tag_id: '4',
+    username: 'food_hunter',
+    created_at: '2024-01-12T12:30:00Z',
+    email: 'food_hunter@example.com',
+    profile: 'https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?w=100',
+    tag: mockTags[3],
+    comments: [
+      {
+        id: '15',
+        body: 'ร้านนี้อยู่ตรงไหนครับ อยากไปลอง',
+        created_at: '2024-01-12T13:00:00Z',
+        email: 'foodie_bkk@example.com',
+        username: 'foodie_bkk',
+        votes: []
+      },
+      {
+        id: '16',
+        body: 'ราคาเท่าไหร่ประมาณครับ',
+        created_at: '2024-01-12T13:45:00Z',
+        email: 'budget_eater@example.com',
+        username: 'budget_eater',
+        votes: []
+      }
+    ],
+    votes: [
+      { id: '23', email: 'isaan_lover@example.com' },
+      { id: '24', email: 'bangkok_foodie@example.com' }
+    ]
+  },
+  {
+    id: '12',
+    title: 'วิธีทำขนมครกโบราณ',
+    body: 'ขนมครกสูตรโบราณที่คุณยายทำ หวานมัน หอมกะทิ เคล็ดลับคือการใช้แป้งข้าวเจ้าผสมแป้งข้าวเหนียว...',
+    featured: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800',
+    tag_id: '4',
+    username: 'dessert_master',
+    created_at: '2024-01-11T15:45:00Z',
+    email: 'dessert_master@example.com',
+    profile: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100',
+    tag: mockTags[3],
+    comments: [
+      {
+        id: '17',
+        body: 'ขนมครกชอบมากกก เด็กๆ ที่บ้านชอบ',
+        created_at: '2024-01-11T16:30:00Z',
+        email: 'mom_baker@example.com',
+        username: 'mom_baker',
+        votes: []
+      }
+    ],
+    votes: [
+      { id: '25', email: 'sweet_tooth@example.com' },
+      { id: '26', email: 'traditional_lover@example.com' }
+    ]
+  },
+
+  // ท่องเที่ยว posts
+  {
+    id: '13',
+    title: 'เที่ยวภูเก็ต 3 วัน 2 คืน งบประหยัด',
+    body: 'แชร์ทริปเที่ยวภูเก็ต งบไม่เกิน 5,000 บาท พร้อมแผนการเดินทาง ที่พัก ร้านอาหารแนะนำ...',
+    featured: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800',
+    tag_id: '5',
+    username: 'budget_traveler',
+    created_at: '2024-01-10T14:20:00Z',
+    email: 'budget_traveler@example.com',
+    profile: 'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=100',
+    tag: mockTags[4],
+    comments: [
+      {
+        id: '18',
+        body: 'ขอรายละเอียดที่พักหน่อยครับ',
+        created_at: '2024-01-10T15:00:00Z',
+        email: 'hotel_seeker@example.com',
+        username: 'hotel_seeker',
+        votes: []
+      },
+      {
+        id: '19',
+        body: 'ค่าเครื่องบินรวมด้วยมั้ยครับ',
+        created_at: '2024-01-10T15:30:00Z',
+        email: 'flight_checker@example.com',
+        username: 'flight_checker',
+        votes: []
+      }
+    ],
+    votes: [
+      { id: '27', email: 'phuket_lover@example.com' },
+      { id: '28', email: 'travel_saver@example.com' },
+      { id: '29', email: 'backpacker_th@example.com' }
+    ]
+  },
+  {
+    id: '14',
+    title: 'Hidden Gems เชียงใหม่ที่คนไม่ค่อยรู้จัก',
+    body: 'แชร์สถานที่เที่ยวในเชียงใหม่ที่ไม่ค่อยมีคนรู้จัก สวยงาม เงียบสงบ เหมาะกับการพักผ่อน...',
+    featured: 'https://images.unsplash.com/photo-1598968305121-f01e7c5efd5b?w=800',
+    tag_id: '5',
+    username: 'chiangmai_local',
+    created_at: '2024-01-09T11:15:00Z',
+    email: 'chiangmai_local@example.com',
+    profile: 'https://images.unsplash.com/photo-1531384441138-2736e62e0919?w=100',
+    tag: mockTags[4],
+    comments: [
+      {
+        id: '20',
+        body: 'ไปเชียงใหม่บ่อยแต่ไม่เคยรู้จักที่นี่',
+        created_at: '2024-01-09T12:00:00Z',
+        email: 'frequent_visitor@example.com',
+        username: 'frequent_visitor',
+        votes: []
+      }
+    ],
+    votes: [
+      { id: '30', email: 'explorer1@example.com' },
+      { id: '31', email: 'northern_thai@example.com' }
+    ]
+  },
+  {
+    id: '15',
+    title: 'เตรียมตัวเที่ยวญี่ปุ่นฤดูซากุระ',
+    body: 'อีก 2 เดือนก็ถึงฤดูซากุระแล้ว มาเตรียมตัวกันเถอะ รวมเคล็ดลับการวางแผน จองที่พัก การแต่งตัว...',
+    featured: 'https://images.unsplash.com/photo-1522383225653-ed111181a951?w=800',
+    tag_id: '5',
+    username: 'japan_expert',
+    created_at: '2024-01-08T09:30:00Z',
+    email: 'japan_expert@example.com',
+    profile: 'https://images.unsplash.com/photo-1552058544-f2b08422138a?w=100',
+    tag: mockTags[4],
+    comments: [
+      {
+        id: '21',
+        body: 'ซากุระบานช่วงไหนสวยที่สุดครับ',
+        created_at: '2024-01-08T10:15:00Z',
+        email: 'sakura_chaser@example.com',
+        username: 'sakura_chaser',
+        votes: []
+      },
+      {
+        id: '22',
+        body: 'ราคาตั๋วเครื่องบินตอนนั้นแพงมากมั้ย',
+        created_at: '2024-01-08T11:00:00Z',
+        email: 'budget_planner@example.com',
+        username: 'budget_planner',
+        votes: []
+      }
+    ],
+    votes: [
+      { id: '32', email: 'japan_lover@example.com' },
+      { id: '33', email: 'sakura_dreamer@example.com' },
+      { id: '34', email: 'asia_traveler@example.com' },
+      { id: '35', email: 'photography_travel@example.com' }
+    ]
   }
 ]
 

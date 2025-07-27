@@ -11,10 +11,8 @@ import Link from 'next/link'
 import React, { useState, useEffect } from 'react'
 import { SEARCH_TAGS } from '../../graphql/quereis'
 import { GetServerSideProps } from 'next'
-import { getSession } from 'next-auth/react'
 import useDebounce from '../../utils/custom-hooks/useDebounce'
 import { useForm } from 'react-hook-form'
-import { Session } from 'next-auth'
 import { CREATE_POST } from '../../graphql/mutation'
 import toast from 'react-hot-toast'
 import { useRouter } from 'next/router'
@@ -24,14 +22,13 @@ import { Tag } from '../../lib/mockData'
 type Props = {
   tag?: String
   limit?: Number
-  cook: Session
 }
 
 type FormData = {
   title: string
   body: string
 }
-function new_topic({ tag = '', limit = 20, cook }: Props) {
+function new_topic({ tag = '', limit = 20 }: Props) {
   const router = useRouter()
   const [showModal, setShowModal] = useState<boolean>(false)
   const [isLink, setIsLink] = useState<boolean>(true)
@@ -40,6 +37,12 @@ function new_topic({ tag = '', limit = 20, cook }: Props) {
   const [selectedTag, setSelectedTag] = useState<Tag | null>(null)
   const [temp, setTemp] = useState<string>('')
   const [tags, setTags] = useState<Tag[]>([])
+
+  // Mock user data (replacing session)
+  const mockUser = {
+    name: 'ผู้ใช้งาน',
+    email: 'user@example.com'
+  }
 
   const {
     register,
@@ -87,11 +90,11 @@ function new_topic({ tag = '', limit = 20, cook }: Props) {
         title: formdata.title,
         body: formdata.body,
         tag_id: selectedTag.id,
-        username: cook?.user?.name || '',
-        email: cook?.user?.email || '',
+        username: mockUser.name,
+        email: mockUser.email,
         featured: featured,
         profile: `https://avatars.dicebear.com/api/open-peeps/${
-          cook?.user?.email || 'placeholder'
+          mockUser.email || 'placeholder'
         }.svg`,
       })
 
@@ -282,12 +285,12 @@ function new_topic({ tag = '', limit = 20, cook }: Props) {
             <p>ตั้งกระทู้โดย :</p>
             <img
               src={`https://avatars.dicebear.com/api/open-peeps/${
-                cook?.user?.email || 'placeholder'
+                mockUser.email || 'placeholder'
               }.svg`}
               alt=""
               className=" h-5 w-5 border border-gray-400"
             />
-            <p>{cook?.user?.name} </p>
+            <p>{mockUser.name} </p>
           </div>
         </div>
       </form>
@@ -295,21 +298,9 @@ function new_topic({ tag = '', limit = 20, cook }: Props) {
   )
 }
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const session = await getSession(context)
-
-  // If the user is not logged in, redirect to the login page
-  if (!session) {
-    return {
-      redirect: {
-        destination: '/api/auth/signin',
-        permanent: false,
-      },
-    }
-  }
+  // No authentication required - removed NextAuth
   return {
-    props: {
-      cook: session,
-    },
+    props: {},
   }
 }
 export default new_topic
