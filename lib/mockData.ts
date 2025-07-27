@@ -545,6 +545,488 @@ export const mockPosts: Post[] = [
       { id: '34', email: 'asia_traveler@example.com' },
       { id: '35', email: 'photography_travel@example.com' }
     ]
+  },
+
+  // เพิ่มโพสต์ใหม่ - เทคโนโลยี
+  {
+    id: '16',
+    title: 'รีวิว iPhone 15 Pro Max หลังใช้งาน 3 เดือน',
+    body: 'ใช้งาน iPhone 15 Pro Max มา 3 เดือนแล้ว มาแชร์ประสบการณ์การใช้งานจริง กล้อง แบตเตอรี่ ประสิทธิภาพ และข้อดี-ข้อเสีย...',
+    featured: 'https://images.unsplash.com/photo-1678652197831-2d180705cd2c?w=800',
+    tag_id: '1',
+    username: 'apple_reviewer',
+    created_at: '2024-01-25T16:30:00Z',
+    email: 'apple_reviewer@example.com',
+    profile: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100',
+    tag: mockTags[0],
+    comments: [
+      {
+        id: '23',
+        body: 'แบตเตอรี่อึดมั้ยครับ เทียบกับ 14 Pro Max',
+        created_at: '2024-01-25T17:00:00Z',
+        email: 'battery_concerned@example.com',
+        username: 'battery_concerned',
+        votes: []
+      }
+    ],
+    votes: [
+      { id: '36', email: 'iphone_fan@example.com' },
+      { id: '37', email: 'tech_review@example.com' }
+    ]
+  },
+  {
+    id: '17',
+    title: 'Chat GPT vs Claude vs Gemini เปรียบเทียบจริง',
+    body: 'ทดสอบ AI ทั้ง 3 ตัวด้วยงานจริง การเขียนโค้ด แปลภาษา เขียนบทความ มาดูกันว่าตัวไหนเหมาะกับงานไหน...',
+    featured: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800',
+    tag_id: '1',
+    username: 'ai_tester',
+    created_at: '2024-01-24T14:20:00Z',
+    email: 'ai_tester@example.com',
+    profile: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100',
+    tag: mockTags[0],
+    comments: [
+      {
+        id: '24',
+        body: 'GPT-4 Turbo ยังเก่งสุดมั้ยครับ',
+        created_at: '2024-01-24T15:30:00Z',
+        email: 'openai_user@example.com',
+        username: 'openai_user',
+        votes: []
+      },
+      {
+        id: '25',
+        body: 'Claude เขียนโค้ดเก่งกว่าตามผมนะ',
+        created_at: '2024-01-24T16:00:00Z',
+        email: 'coder_daily@example.com',
+        username: 'coder_daily',
+        votes: [{ id: '38', email: 'claude_fan@example.com' }]
+      }
+    ],
+    votes: [
+      { id: '39', email: 'ai_enthusiast@example.com' },
+      { id: '40', email: 'tech_comparison@example.com' },
+      { id: '41', email: 'ml_researcher@example.com' }
+    ]
+  },
+
+  // เพิ่มโพสต์ใหม่ - บันเทิง
+  {
+    id: '18',
+    title: 'The Bear Season 3 สุดยอดซีรีส์เชฟที่ต้องดู',
+    body: 'เพิ่งดูจบ The Bear Season 3 ซีรีส์เกี่ยวกับเชฟและครัวที่สมจริงมาก อารมณ์เครียดแต่สนุกมาก แนะนำเลย...',
+    featured: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800',
+    tag_id: '2',
+    username: 'series_addict',
+    created_at: '2024-01-23T21:45:00Z',
+    email: 'series_addict@example.com',
+    profile: 'https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=100',
+    tag: mockTags[1],
+    comments: [
+      {
+        id: '26',
+        body: 'ดูแล้วอยากไปเรียนทำอาหาร 555',
+        created_at: '2024-01-23T22:30:00Z',
+        email: 'cooking_inspired@example.com',
+        username: 'cooking_inspired',
+        votes: []
+      }
+    ],
+    votes: [
+      { id: '42', email: 'netflix_lover@example.com' },
+      { id: '43', email: 'chef_wannabe@example.com' }
+    ]
+  },
+  {
+    id: '19',
+    title: 'คอนเสิร์ต BLACKPINK Born Pink World Tour Bangkok',
+    body: 'ไปดูคอนเสิร์ต BLACKPINK เมื่อคืน สุดยอดมากกก Stage effect เพลง การแสดง ทุกอย่างเพอร์เฟคมาก ค่าบัตรคุ้มเกินราคา...',
+    featured: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800',
+    tag_id: '2',
+    username: 'kpop_concert_fan',
+    created_at: '2024-01-22T23:30:00Z',
+    email: 'kpop_fan@example.com',
+    profile: 'https://images.unsplash.com/photo-1544723795-3fb6469f5b39?w=100',
+    tag: mockTags[1],
+    comments: [
+      {
+        id: '27',
+        body: 'Jisoo สวยมากกกก เห็นชัดมั้ย',
+        created_at: '2024-01-23T08:00:00Z',
+        email: 'jisoo_bias@example.com',
+        username: 'jisoo_bias',
+        votes: []
+      },
+      {
+        id: '28',
+        body: 'Lisa rap ส่วนไหนเก่งสุดครับ',
+        created_at: '2024-01-23T09:30:00Z',
+        email: 'rap_lover@example.com',
+        username: 'rap_lover',
+        votes: []
+      }
+    ],
+    votes: [
+      { id: '44', email: 'blackpink_thailand@example.com' },
+      { id: '45', email: 'concert_goer@example.com' },
+      { id: '46', email: 'music_lover@example.com' },
+      { id: '47', email: 'stage_performance@example.com' }
+    ]
+  },
+
+  // เพิ่มโพสต์ใหม่ - กีฬา
+  {
+    id: '20',
+    title: 'ลิเวอร์พูล vs แมนซิตี้ คลาสสิโกพรีเมียร์ลีก',
+    body: 'แมตช์ดังคืนนี้ ลิเวอร์พูล เจอ แมนซิตี้ ที่ Anfield การจับคู่ที่น่าตื่นเต้นที่สุดในพรีเมียร์ลีก ใครจะชนะกันนะ...',
+    featured: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800',
+    tag_id: '3',
+    username: 'premier_league_fan',
+    created_at: '2024-01-21T18:00:00Z',
+    email: 'football_fanatic@example.com',
+    profile: 'https://images.unsplash.com/photo-1566753323558-f4e0952af115?w=100',
+    tag: mockTags[2],
+    comments: [
+      {
+        id: '29',
+        body: 'YNWA! Liverpool จะชนะแน่นอน',
+        created_at: '2024-01-21T18:30:00Z',
+        email: 'liverpool_fan@example.com',
+        username: 'liverpool_fan',
+        votes: [{ id: '48', email: 'reds_supporter@example.com' }]
+      },
+      {
+        id: '30',
+        body: 'Haaland จะยิงไปกี่ลูกนะครับ',
+        created_at: '2024-01-21T19:00:00Z',
+        email: 'goal_predictor@example.com',
+        username: 'goal_predictor',
+        votes: []
+      }
+    ],
+    votes: [
+      { id: '49', email: 'epl_watcher@example.com' },
+      { id: '50', email: 'football_analytics@example.com' }
+    ]
+  },
+  {
+    id: '21',
+    title: 'ตารางฟิตเนสสำหรับมือใหม่ เริ่มต้นอย่างไร',
+    body: 'สำหรับใครที่อยากเริ่มออกกำลังกาย แต่ไม่รู้จะเริ่มยังไง มาดูตารางฟิตเนสง่ายๆ สำหรับมือใหม่กัน เริ่มได้ที่บ้าน...',
+    featured: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800',
+    tag_id: '3',
+    username: 'fitness_trainer',
+    created_at: '2024-01-20T07:30:00Z',
+    email: 'personal_trainer@example.com',
+    profile: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=100',
+    tag: mockTags[2],
+    comments: [
+      {
+        id: '31',
+        body: 'ขอคำแนะนำเรื่องอาหารประกอบด้วยครับ',
+        created_at: '2024-01-20T08:15:00Z',
+        email: 'diet_beginner@example.com',
+        username: 'diet_beginner',
+        votes: []
+      }
+    ],
+    votes: [
+      { id: '51', email: 'health_conscious@example.com' },
+      { id: '52', email: 'workout_newbie@example.com' }
+    ]
+  },
+
+  // เพิ่มโพสต์ใหม่ - อาหาร
+  {
+    id: '22',
+    title: 'วิธีทำข้าวผัดกะเพราหมูกรอบแบบร้านดัง',
+    body: 'เทคนิคทำข้าวผัดกะเพราหมูกรอบแบบร้านดัง เนื้อหมูกรอบนอกนุ่มใน กะเพราหอม เผ็ดร้อนแบบจี๊ดจ๊าด วิธีทำไม่ยาก...',
+    featured: 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=800',
+    tag_id: '4',
+    username: 'street_food_chef',
+    created_at: '2024-01-19T12:45:00Z',
+    email: 'thai_food_master@example.com',
+    profile: 'https://images.unsplash.com/photo-1595273670150-bd0c3c392e46?w=100',
+    tag: mockTags[3],
+    comments: [
+      {
+        id: '32',
+        body: 'น้ำมันที่ใช้ผัดต้องใช้อะไรดีครับ',
+        created_at: '2024-01-19T13:30:00Z',
+        email: 'cooking_technique@example.com',
+        username: 'cooking_technique',
+        votes: []
+      },
+      {
+        id: '33',
+        body: 'ไข่ดาวมาคู่กันจริงๆ อร่อยสุดยอด',
+        created_at: '2024-01-19T14:00:00Z',
+        email: 'egg_lover@example.com',
+        username: 'egg_lover',
+        votes: []
+      }
+    ],
+    votes: [
+      { id: '53', email: 'thai_cuisine@example.com' },
+      { id: '54', email: 'home_cook@example.com' },
+      { id: '55', email: 'spicy_food@example.com' }
+    ]
+  },
+  {
+    id: '23',
+    title: 'คาเฟ่ซ่อนเร้นย่านทองหล่อ บรรยากาศดี กาแฟเด็ด',
+    body: 'เจอคาเฟ่เก๋ๆ ซ่อนตัวในซอยทองหล่อ บรรยากาศสไตล์มินิมอล กาแฟ single origin รสชาติเข้มข้น ของหวานก็อร่อย...',
+    featured: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800',
+    tag_id: '4',
+    username: 'cafe_hunter',
+    created_at: '2024-01-18T15:20:00Z',
+    email: 'coffee_enthusiast@example.com',
+    profile: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100',
+    tag: mockTags[3],
+    comments: [
+      {
+        id: '34',
+        body: 'ราคาเท่าไหร่ครับ แพงมั้ย',
+        created_at: '2024-01-18T16:00:00Z',
+        email: 'budget_coffee@example.com',
+        username: 'budget_coffee',
+        votes: []
+      }
+    ],
+    votes: [
+      { id: '56', email: 'coffee_addict@example.com' },
+      { id: '57', email: 'thonglor_resident@example.com' }
+    ]
+  },
+
+  // เพิ่มโพสต์ใหม่ - ท่องเที่ยว
+  {
+    id: '24',
+    title: 'เกาะช้าง จันทบุรี เที่ยวทะเลใกล้กรุงเทพ',
+    body: 'เที่ยวเกาะช้าง จันทบุรี ทะเลใสใกล้กรุงเทพ เดินทางสะดวก หาดทรายขาว น้ำใส กิจกรรมเยอะ อาหารทะเลสด...',
+    featured: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+    tag_id: '5',
+    username: 'weekend_traveler',
+    created_at: '2024-01-17T09:00:00Z',
+    email: 'short_trip@example.com',
+    profile: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100',
+    tag: mockTags[4],
+    comments: [
+      {
+        id: '35',
+        body: 'ไปช่วงไหนดีครับ เดือนนี้น้ำใสมั้ย',
+        created_at: '2024-01-17T10:30:00Z',
+        email: 'timing_asker@example.com',
+        username: 'timing_asker',
+        votes: []
+      },
+      {
+        id: '36',
+        body: 'รีสอร์ทแนะนำช่วงราคา 2-3 พัน ต่อคืน',
+        created_at: '2024-01-17T11:00:00Z',
+        email: 'resort_seeker@example.com',
+        username: 'resort_seeker',
+        votes: []
+      }
+    ],
+    votes: [
+      { id: '58', email: 'beach_lover@example.com' },
+      { id: '59', email: 'chanthaburi_fan@example.com' }
+    ]
+  },
+  {
+    id: '25',
+    title: 'backpack ยุโรป 1 เดือน งบ 50,000 บาท',
+    body: 'แบ่งปันประสบการณ์เที่ยว backpack ยุโรป 1 เดือน งบรวม 50,000 บาท ผ่าน 8 ประเทศ พร้อมเทคนิคประหยัดเงิน...',
+    featured: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800',
+    tag_id: '5',
+    username: 'europe_backpacker',
+    created_at: '2024-01-16T19:30:00Z',
+    email: 'budget_traveler_eu@example.com',
+    profile: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100',
+    tag: mockTags[4],
+    comments: [
+      {
+        id: '37',
+        body: 'Eurail Pass คุ้มมั้ยครับสำหรับ 1 เดือน',
+        created_at: '2024-01-16T20:15:00Z',
+        email: 'train_travel@example.com',
+        username: 'train_travel',
+        votes: []
+      },
+      {
+        id: '38',
+        body: 'โฮสเทลแนะนำใน Amsterdam มั้ยครับ',
+        created_at: '2024-01-16T21:00:00Z',
+        email: 'amsterdam_bound@example.com',
+        username: 'amsterdam_bound',
+        votes: []
+      }
+    ],
+    votes: [
+      { id: '60', email: 'gap_year_traveler@example.com' },
+      { id: '61', email: 'europe_dreamer@example.com' },
+      { id: '62', email: 'budget_conscious@example.com' },
+      { id: '63', email: 'solo_traveler@example.com' }
+    ]
+  },
+
+  // เพิ่มโพสต์ใหม่ - สุขภาพ
+  {
+    id: '26',
+    title: 'ลดน้ำหนัก 10 กิโลใน 3 เดือน แบบยั่งยืน',
+    body: 'แชร์ประสบการณ์ลดน้ำหนัก 10 กิโลใน 3 เดือน โดยไม่กินยา แค่ปรับนิสัยการกิน และออกกำลังกาย พร้อมเมนูและตาราง...',
+    featured: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800',
+    tag_id: '3',
+    username: 'weight_loss_success',
+    created_at: '2024-01-15T06:30:00Z',
+    email: 'healthy_lifestyle@example.com',
+    profile: 'https://images.unsplash.com/photo-1594736797933-d0b6b5a32cc9?w=100',
+    tag: mockTags[2],
+    comments: [
+      {
+        id: '39',
+        body: 'ออกกำลังกายแบบไหนครับ วิ่งหรือยิม',
+        created_at: '2024-01-15T07:45:00Z',
+        email: 'exercise_curious@example.com',
+        username: 'exercise_curious',
+        votes: []
+      },
+      {
+        id: '40',
+        body: 'หิวข้ามมื้อทำยังไงครับ เครียดมาก',
+        created_at: '2024-01-15T08:30:00Z',
+        email: 'hunger_struggle@example.com',
+        username: 'hunger_struggle',
+        votes: []
+      }
+    ],
+    votes: [
+      { id: '64', email: 'motivation_seeker@example.com' },
+      { id: '65', email: 'diet_follower@example.com' },
+      { id: '66', email: 'transformation@example.com' }
+    ]
+  },
+
+  // เพิ่มโพสต์ใหม่ - การเงิน/หุ้น
+  {
+    id: '27',
+    title: 'SET Index ปี 2024 จะไปทิศทางไหน',
+    body: 'วิเคราะห์แนวโน้ม SET Index ปี 2024 จากปัจจัยเศรษฐกิจโลก การเมืองไทย และการเลือกตั้งสหรัฐฯ ที่อาจส่งผลต่อตลาดหุ้นไทย...',
+    featured: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800',
+    tag_id: '1',
+    username: 'stock_analyst',
+    created_at: '2024-01-14T11:20:00Z',
+    email: 'market_watcher@example.com',
+    profile: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100',
+    tag: mockTags[0],
+    comments: [
+      {
+        id: '41',
+        body: 'ผมว่า Banking sector ยังน่าสนใจนะ',
+        created_at: '2024-01-14T12:00:00Z',
+        email: 'bank_investor@example.com',
+        username: 'bank_investor',
+        votes: []
+      }
+    ],
+    votes: [
+      { id: '67', email: 'retail_investor@example.com' },
+      { id: '68', email: 'thai_stock@example.com' }
+    ]
+  },
+
+  // เพิ่มโพสต์ใหม่ - ความงาม
+  {
+    id: '28',
+    title: 'Skincare routine สำหรับผิวแพ้ง่าย งบ 1,000 บาท',
+    body: 'แชร์ skincare routine สำหรับคนผิวแพ้ง่าย งบไม่เกิน 1,000 บาท ใช้ผลิตภัณฑ์หาง่ายในเซเว่น ผิวดีขึ้นเห็นได้ชัด...',
+    featured: 'https://images.unsplash.com/photo-1552693673-1bf958298935?w=800',
+    tag_id: '3',
+    username: 'skincare_budget',
+    created_at: '2024-01-13T19:15:00Z',
+    email: 'beauty_blogger@example.com',
+    profile: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100',
+    tag: mockTags[2],
+    comments: [
+      {
+        id: '42',
+        body: 'ผิวมันแบบผมใช้ได้มั้ยครับ',
+        created_at: '2024-01-13T20:00:00Z',
+        email: 'oily_skin@example.com',
+        username: 'oily_skin',
+        votes: []
+      }
+    ],
+    votes: [
+      { id: '69', email: 'sensitive_skin@example.com' },
+      { id: '70', email: 'budget_beauty@example.com' }
+    ]
+  },
+
+  // เพิ่มโพสต์ใหม่ - การศึกษา
+  {
+    id: '29',
+    title: 'เรียนออนไลน์ Programming ฟรี แนะนำ Platform',
+    body: 'รวม Platform เรียน Programming ออนไลน์ฟรี ตั้งแต่มือใหม่จนถึงระดับสูง freeCodeCamp, Codecademy, Coursera พร้อมรีวิว...',
+    featured: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800',
+    tag_id: '1',
+    username: 'coding_teacher',
+    created_at: '2024-01-12T20:30:00Z',
+    email: 'programming_educator@example.com',
+    profile: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100',
+    tag: mockTags[0],
+    comments: [
+      {
+        id: '43',
+        body: 'ภาษาไหนเหมาะสำหรับมือใหม่ครับ',
+        created_at: '2024-01-12T21:15:00Z',
+        email: 'beginner_coder@example.com',
+        username: 'beginner_coder',
+        votes: []
+      },
+      {
+        id: '44',
+        body: 'Harvard CS50 ฟรีใน edX แนะนำมากครับ',
+        created_at: '2024-01-12T22:00:00Z',
+        email: 'cs50_graduate@example.com',
+        username: 'cs50_graduate',
+        votes: [{ id: '71', email: 'harvard_fan@example.com' }]
+      }
+    ],
+    votes: [
+      { id: '72', email: 'self_learner@example.com' },
+      { id: '73', email: 'coding_newbie@example.com' },
+      { id: '74', email: 'career_changer@example.com' }
+    ]
+  },
+
+  // เพิ่มโพสต์ใหม่ - รถยนต์
+  {
+    id: '30',
+    title: 'Honda City RS 2024 ใหม่ คุ้มค่าการรอมั้ย',
+    body: 'Honda City RS 2024 โฉมใหม่เพิ่งเปิดตัว เปลี่ยนแปลงอะไรบ้าง ราคาเท่าไหร่ เทียบกับคู่แข่งแล้วคุ้มมั้ย มารีวิวกัน...',
+    featured: 'https://images.unsplash.com/photo-1549399505-7e1bbb5d6c08?w=800',
+    tag_id: '1',
+    username: 'car_reviewer',
+    created_at: '2024-01-11T16:45:00Z',
+    email: 'automotive_expert@example.com',
+    profile: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100',
+    tag: mockTags[0],
+    comments: [
+      {
+        id: '45',
+        body: 'ค่าน้ำมันดีกว่าเดิมมั้ยครับ',
+        created_at: '2024-01-11T17:30:00Z',
+        email: 'fuel_economy@example.com',
+        username: 'fuel_economy',
+        votes: []
+      }
+    ],
+    votes: [
+      { id: '75', email: 'honda_fan@example.com' },
+      { id: '76', email: 'sedan_lover@example.com' }
+    ]
   }
 ]
 
