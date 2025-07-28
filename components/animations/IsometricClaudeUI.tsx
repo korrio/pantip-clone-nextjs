@@ -6,7 +6,7 @@ export const IsometricClaudeUI: React.FC = () => {
   const { fps } = useVideoConfig();
 
   // Convert Remotion frame to component's frame system
-  const componentFrame = Math.floor((frame * 20) / fps); // Convert to ~20fps equivalent
+  const componentFrame = Math.floor((frame * 60) / fps); // Convert to ~20fps equivalent
 
   // Animation functions
   const interpolateValue = (value: number, inputRange: [number, number], outputRange: [number, number], options: { easing?: string } = {}) => {

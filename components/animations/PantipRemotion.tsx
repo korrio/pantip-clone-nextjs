@@ -6,7 +6,7 @@ export const PantipRemotion: React.FC = () => {
   const { fps } = useVideoConfig();
 
   // Convert Remotion frame to component's frame system
-  const componentFrame = Math.floor((frame * 20) / fps);
+  const componentFrame = Math.floor((frame * 60) / fps);
 
   // Animation functions with custom easing
   const interpolateValue = (value: number, inputRange: [number, number], outputRange: [number, number], options: { easing?: string } = {}) => {

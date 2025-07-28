@@ -8,8 +8,8 @@ export const RemotionRoot: React.FC = () => {
       <Composition
         id="PantipRemotion"
         component={PantipRemotionVideo}
-        durationInFrames={300}
-        fps={20}
+        durationInFrames={900}
+        fps={60}
         width={1920}
         height={1080}
         defaultProps={{}}
@@ -17,8 +17,8 @@ export const RemotionRoot: React.FC = () => {
       <Composition
         id="IsometricClaudeUI"
         component={IsometricClaudeUIVideo}
-        durationInFrames={300}
-        fps={20}
+        durationInFrames={900}
+        fps={60}
         width={1920}
         height={1080}
         defaultProps={{}}

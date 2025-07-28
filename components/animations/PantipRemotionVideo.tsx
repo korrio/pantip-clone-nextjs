@@ -6,7 +6,7 @@ export const PantipRemotionVideo: React.FC = () => {
   const { fps } = useVideoConfig();
 
   // Convert Remotion frame to component's frame system
-  const componentFrame = Math.floor((frame * 20) / fps);
+  const componentFrame = Math.floor((frame * 60) / fps);
 
   // Animation functions with custom easing
   const interpolateValue = (value: number, inputRange: [number, number], outputRange: [number, number], options: { easing?: string } = {}) => {
@@ -30,14 +30,14 @@ export const PantipRemotionVideo: React.FC = () => {
     return outputMin + (outputMax - outputMin) * easedProgress;
   };
 
-  // Animation timings for Pantip interface
-  const containerScale = interpolateValue(componentFrame, [0, 40], [0.8, 1], { easing: 'easeOut' });
-  const headerSlide = interpolateValue(componentFrame, [10, 50], [-100, 0], { easing: 'easeOut' });
-  const bannerFade = interpolateValue(componentFrame, [20, 60], [0, 1], { easing: 'easeOut' });
-  const navAppear = interpolateValue(componentFrame, [30, 70], [0, 1], { easing: 'easeOut' });
-  const categoryGridSlide = interpolateValue(componentFrame, [50, 90], [50, 0], { easing: 'easeOut' });
-  const sidebarSlide = interpolateValue(componentFrame, [60, 100], [300, 0], { easing: 'easeOut' });
-  const postsAppear = interpolateValue(componentFrame, [80, 120], [0, 1], { easing: 'easeOut' });
+  // Animation timings for Pantip interface (15s = 900 frames at 60fps)
+  const containerScale = interpolateValue(componentFrame, [0, 120], [0.8, 1], { easing: 'easeOut' });
+  const headerSlide = interpolateValue(componentFrame, [60, 180], [-100, 0], { easing: 'easeOut' });
+  const bannerFade = interpolateValue(componentFrame, [120, 240], [0, 1], { easing: 'easeOut' });
+  const navAppear = interpolateValue(componentFrame, [180, 300], [0, 1], { easing: 'easeOut' });
+  const categoryGridSlide = interpolateValue(componentFrame, [300, 480], [50, 0], { easing: 'easeOut' });
+  const sidebarSlide = interpolateValue(componentFrame, [420, 600], [300, 0], { easing: 'easeOut' });
+  const postsAppear = interpolateValue(componentFrame, [540, 720], [0, 1], { easing: 'easeOut' });
   const floatingAnimation = Math.sin(componentFrame * 0.08) * 5;
   const textGlow = Math.sin(componentFrame * 0.15) * 0.3 + 0.7;
 
@@ -202,8 +202,8 @@ export const PantipRemotionVideo: React.FC = () => {
                     color: '#d2cde1',
                     cursor: 'pointer',
                     transition: 'all 0.3s ease',
-                    opacity: interpolateValue(componentFrame, [40 + index * 5, 70 + index * 5], [0, 1]),
-                    transform: `translateX(${interpolateValue(componentFrame, [40 + index * 5, 70 + index * 5], [-20, 0])}px)`,
+                    opacity: interpolateValue(componentFrame, [240 + index * 20, 360 + index * 20], [0, 1]),
+                    transform: `translateX(${interpolateValue(componentFrame, [240 + index * 20, 360 + index * 20], [-20, 0])}px)`,
                     display: 'flex',
                     alignItems: 'center',
                     gap: '6px',
@@ -221,7 +221,7 @@ export const PantipRemotionVideo: React.FC = () => {
                   display: 'flex',
                   alignItems: 'center',
                   gap: '12px',
-                  opacity: interpolateValue(componentFrame, [70, 100], [0, 1]),
+                  opacity: interpolateValue(componentFrame, [420, 540], [0, 1]),
                 }}
               >
                 <div 
@@ -308,8 +308,8 @@ export const PantipRemotionVideo: React.FC = () => {
                           border: '1px solid rgba(68, 65, 111, 0.5)',
                           cursor: 'pointer',
                           transition: 'all 0.3s ease',
-                          opacity: interpolateValue(componentFrame, [60 + index * 3, 90 + index * 3], [0, 1]),
-                          transform: `scale(${interpolateValue(componentFrame, [60 + index * 3, 90 + index * 3], [0.8, 1])})`,
+                          opacity: interpolateValue(componentFrame, [360 + index * 15, 480 + index * 15], [0, 1]),
+                          transform: `scale(${interpolateValue(componentFrame, [360 + index * 15, 480 + index * 15], [0.8, 1])})`,
                         }}
                       >
                         <div 
@@ -373,8 +373,8 @@ export const PantipRemotionVideo: React.FC = () => {
                         gap: '16px',
                         cursor: 'pointer',
                         transition: 'all 0.3s ease',
-                        opacity: interpolateValue(componentFrame, [90 + index * 8, 120 + index * 8], [0, 1]),
-                        transform: `translateX(${interpolateValue(componentFrame, [90 + index * 8, 120 + index * 8], [-30, 0])}px)`,
+                        opacity: interpolateValue(componentFrame, [600 + index * 30, 720 + index * 30], [0, 1]),
+                        transform: `translateX(${interpolateValue(componentFrame, [600 + index * 30, 720 + index * 30], [-30, 0])}px)`,
                       }}
                     >
                       <div 
@@ -454,7 +454,7 @@ export const PantipRemotionVideo: React.FC = () => {
                         justifyContent: 'space-between',
                         alignItems: 'center',
                         cursor: 'pointer',
-                        opacity: interpolateValue(componentFrame, [110 + index * 5, 140 + index * 5], [0, 1]),
+                        opacity: interpolateValue(componentFrame, [660 + index * 20, 780 + index * 20], [0, 1]),
                       }}
                     >
                       <span style={{ fontSize: '12px', color: '#d2cde1' }}>{item.tag}</span>
@@ -491,7 +491,7 @@ export const PantipRemotionVideo: React.FC = () => {
             alignItems: 'center',
             justifyContent: 'center',
             transform: `rotateX(10deg) rotateY(-5deg) translateY(${Math.sin(componentFrame * 0.06) * 8}px)`,
-            opacity: interpolateValue(componentFrame, [80, 120], [0, 0.9]),
+            opacity: interpolateValue(componentFrame, [480, 660], [0, 0.9]),
             boxShadow: '0 15px 30px rgba(251, 181, 70, 0.3)',
           }}
         >
@@ -511,7 +511,7 @@ export const PantipRemotionVideo: React.FC = () => {
             alignItems: 'center',
             justifyContent: 'center',
             transform: `rotateX(10deg) rotateY(-5deg) translateY(${Math.sin(componentFrame * 0.08 + 1) * 10}px)`,
-            opacity: interpolateValue(componentFrame, [100, 140], [0, 0.8]),
+            opacity: interpolateValue(componentFrame, [600, 780], [0, 0.8]),
             boxShadow: '0 15px 30px rgba(60, 57, 99, 0.4)',
           }}
         >
@@ -530,8 +530,8 @@ export const PantipRemotionVideo: React.FC = () => {
             borderRadius: '16px',
             padding: '16px 32px',
             border: '1px solid rgba(251, 181, 70, 0.3)',
-            opacity: interpolateValue(componentFrame, [140, 180], [0, 1]),
-            transform: `translateX(-50%) scale(${interpolateValue(componentFrame, [140, 180], [0.8, 1])})`,
+            opacity: interpolateValue(componentFrame, [720, 840], [0, 1]),
+            transform: `translateX(-50%) scale(${interpolateValue(componentFrame, [720, 840], [0.8, 1])})`,
           }}
         >
           <div style={{ textAlign: 'center' }}>

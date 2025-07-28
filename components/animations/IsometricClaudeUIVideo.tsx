@@ -6,7 +6,7 @@ export const IsometricClaudeUIVideo: React.FC = () => {
   const { fps } = useVideoConfig();
 
   // Convert Remotion frame to component's frame system
-  const componentFrame = Math.floor((frame * 20) / fps); // Convert to ~20fps equivalent
+  const componentFrame = Math.floor((frame * 60) / fps); // Convert to ~20fps equivalent
 
   // Animation functions
   const interpolateValue = (value: number, inputRange: [number, number], outputRange: [number, number], options: { easing?: string } = {}) => {
@@ -27,17 +27,17 @@ export const IsometricClaudeUIVideo: React.FC = () => {
     return outputMin + (outputMax - outputMin) * easedProgress;
   };
 
-  // Animation timings
-  const containerAppear = interpolateValue(componentFrame, [0, 30], [0, 1], { easing: 'easeOut' });
-  const messageAppear = interpolateValue(componentFrame, [40, 70], [0, 1], { easing: 'easeOut' });
-  const responseAppear = interpolateValue(componentFrame, [80, 110], [0, 1], { easing: 'easeOut' });
-  const sidebarSlide = interpolateValue(componentFrame, [20, 50], [-200, 0], { easing: 'easeOut' });
+  // Animation timings (15s = 900 frames at 60fps)
+  const containerAppear = interpolateValue(componentFrame, [0, 120], [0, 1], { easing: 'easeOut' });
+  const messageAppear = interpolateValue(componentFrame, [180, 360], [0, 1], { easing: 'easeOut' });
+  const responseAppear = interpolateValue(componentFrame, [420, 600], [0, 1], { easing: 'easeOut' });
+  const sidebarSlide = interpolateValue(componentFrame, [60, 240], [-200, 0], { easing: 'easeOut' });
   
   const typingDots = Math.sin(componentFrame * 0.3) * 0.5 + 0.5;
   const floatingAnimation = Math.sin(componentFrame * 0.1) * 3;
 
   // Thai text smooth appearance animation
-  const textAppearScale = interpolateValue(componentFrame, [120, 140], [0.8, 1], { easing: 'easeOut' });
+  const textAppearScale = interpolateValue(componentFrame, [660, 780], [0.8, 1], { easing: 'easeOut' });
 
   return (
     <AbsoluteFill
@@ -165,8 +165,8 @@ export const IsometricClaudeUIVideo: React.FC = () => {
                       padding: '12px',
                       borderRadius: '12px',
                       fontSize: '14px',
-                      opacity: interpolateValue(componentFrame, [30 + index * 5, 60 + index * 5], [0, 1]),
-                      transform: `translateY(${interpolateValue(componentFrame, [30 + index * 5, 60 + index * 5], [10, 0])}px)`,
+                      opacity: interpolateValue(componentFrame, [120 + index * 20, 240 + index * 20], [0, 1]),
+                      transform: `translateY(${interpolateValue(componentFrame, [120 + index * 20, 240 + index * 20], [10, 0])}px)`,
                       backgroundColor: 'rgba(177, 173, 161, 0.1)',
                       color: '#b1ada1',
                       border: '1px solid rgba(193, 95, 60, 0.2)',
@@ -339,14 +339,14 @@ export const IsometricClaudeUIVideo: React.FC = () => {
                       </div>
                       <p style={{ fontSize: '14px', lineHeight: '1.5', color: '#b1ada1', margin: 0 }}>
                         I'd be delighted to help you create an isometric animation using our design principles! Our design system emphasizes clean aesthetics, thoughtful interaction, and sophisticated color palettes.
-                        {componentFrame > 110 && (
+                        {componentFrame > 540 && (
                           <>
                             <br/><br/>
                             I'll use our signature colors and clean typography with smooth animations that reflect Claude's intelligent and helpful personality. The isometric perspective will add depth while maintaining clarity and accessibility.
                           </>
                         )}
                       </p>
-                      {componentFrame < 110 && (
+                      {componentFrame < 540 && (
                         <div style={{ display: 'flex', gap: '4px', marginTop: '12px' }}>
                           <div 
                             style={{
@@ -441,7 +441,7 @@ export const IsometricClaudeUIVideo: React.FC = () => {
             alignItems: 'center',
             justifyContent: 'center',
             transform: `rotateX(15deg) rotateY(-10deg) translateY(${Math.sin(componentFrame * 0.08) * 5}px)`,
-            opacity: interpolateValue(componentFrame, [60, 90], [0, 0.8]),
+            opacity: interpolateValue(componentFrame, [360, 480], [0, 0.8]),
             backgroundColor: '#c15f3c',
             boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.25)',
             transition: 'all 0.6s ease-out',
@@ -462,7 +462,7 @@ export const IsometricClaudeUIVideo: React.FC = () => {
             alignItems: 'center',
             justifyContent: 'center',
             transform: `rotateX(15deg) rotateY(-10deg) translateY(${Math.sin(componentFrame * 0.12 + 1) * 7}px)`,
-            opacity: interpolateValue(componentFrame, [70, 100], [0, 0.7]),
+            opacity: interpolateValue(componentFrame, [420, 540], [0, 0.7]),
             backgroundColor: '#b1ada1',
             boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.25)',
             transition: 'all 0.6s ease-out',
@@ -483,7 +483,7 @@ export const IsometricClaudeUIVideo: React.FC = () => {
             alignItems: 'center',
             justifyContent: 'center',
             transform: `rotateX(15deg) rotateY(-10deg) translateY(${Math.sin(componentFrame * 0.1 + 2) * 4}px)`,
-            opacity: interpolateValue(componentFrame, [80, 110], [0, 0.6]),
+            opacity: interpolateValue(componentFrame, [480, 600], [0, 0.6]),
             backgroundColor: '#c15f3c',
             boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.25)',
             transition: 'all 0.6s ease-out',
