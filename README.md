@@ -1,29 +1,106 @@
+# Pantip Clone - Next.js Forum Platform
 
-![show](https://github.com/CRYBOII/pantip/blob/master/4.gif "show")
-![show](https://github.com/CRYBOII/pantip/blob/master/1.gif "show")
-![show](https://github.com/CRYBOII/pantip/blob/master/2.gif "show")
-![show](https://github.com/CRYBOII/pantip/blob/master/3.gif "show")
+A comprehensive Thai discussion forum platform built with Next.js, featuring advanced animations and modern web technologies. This project demonstrates the exploration of cutting-edge development tools and frameworks.
+
+## Video Demo
+
+![Pantip Animation Demo](out/pantip-ui-60-1fps.mp4)
+
+![Pantip Animation Demo](https://github.com/korrio/pantip-clone-nextjs/out/pantip-ui-60-1fps.mp4)
 
 
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.0)](https://tailwindcss.com/blog/tailwindcss-v3) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+## Project Highlights
 
-## Deploy your own
+- **Complete Forum System**: Authentic Thai forum experience with posts, comments, voting, and categories
+- **Advanced Animations**: Dual Remotion animation system with 15-second videos at 60fps
+- **SEO Optimized**: Schema.org structured data, XML sitemap, and comprehensive meta tags
+- **Search Integration**: Real Pantip API integration with fallback mock data
+- **Modern Architecture**: Full TypeScript implementation with mock data layer
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
+## Tech Stack
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+### Core Framework
+- **Next.js 15.1.7** - React framework with SSR/SSG
+- **React 19.0.0** - UI library
+- **TypeScript 4.5.4** - Type safety
 
-## How to use
+### Styling & UI
+- **Tailwind CSS 3.0.7** - Utility-first CSS framework
+- **@heroicons/react 1.0.6** - Icon library
+- **Autoprefixer 10.4.0** - CSS vendor prefixing
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+### Animation & Media
+- **Remotion 4.0.327** - Video generation framework
+- **@remotion/cli 4.0.327** - Video rendering tools
+- **Critters 0.0.25** - Critical CSS extraction
+
+### Development Tools
+- **Prettier 2.5.1** - Code formatting
+- **prettier-plugin-tailwindcss 0.1.1** - Tailwind class sorting
+
+### Additional Libraries
+- **next-seo 5.4.0** - SEO optimization
+- **react-hook-form 7.31.2** - Form handling
+- **react-hot-toast 2.2.0** - Toast notifications
+- **react-timeago 6.2.1** - Time formatting
+- **html-react-parser 1.4.12** - HTML parsing
+
+## Key Features
+
+- **Forum Categories**: 10+ category rooms with authentic Thai names
+- **Post Management**: Create, vote, and comment on forum topics
+- **Tag System**: Organized content with hot tags sidebar
+- **Responsive Design**: Mobile-first approach with desktop optimization
+- **Video Export**: Generate MP4 animations of forum interfaces
+- **Mock Data Layer**: Complete offline functionality without external dependencies
+
+## Project Statistics
+
+- **25+ Components** - Modular React architecture
+- **15+ Pages** - Complete forum navigation
+- **2 Animation Systems** - Claude UI and Pantip interface demos
+- **100+ Mock Posts** - Diverse content across all categories
+- **Thai Language Support** - Authentic localization
+
+## Development Commands
 
 ```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-# or
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-# or
-pnpm create next-app -- --example with-tailwindcss with-tailwindcss-app
+# Development server
+npm run dev
+
+# Production build
+npm run build
+
+# Start production server
+npm start
+
+# Animation preview
+npm run remotion:preview
+
+# Render video
+npm run remotion:render
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+## Video Rendering
+
+Generate animation videos:
+
+```bash
+npx remotion render remotion/index.ts PantipRemotion out/pantip-ui.mp4
+npx remotion render remotion/index.ts IsometricClaudeUI out/claude-ui.mp4
+```
+
+## Purpose
+
+This project serves as a learning platform to explore and demonstrate:
+- Modern React/Next.js development patterns
+- Advanced animation techniques with Remotion
+- SEO optimization strategies
+- TypeScript implementation in large applications
+- Mock data architecture for offline development
+- Video generation from web interfaces
+
+## Architecture
+
+The application uses a complete mock data system, eliminating external dependencies while providing a realistic forum experience. All data operations simulate async behavior with Promise-based functions, making it easy to transition to real APIs in the future.
