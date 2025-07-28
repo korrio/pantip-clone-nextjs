@@ -4,11 +4,7 @@ A comprehensive Thai discussion forum platform built with Next.js, featuring adv
 
 ## Video Demo
 
-![Pantip Animation Demo](out/pantip-ui-60-1fps.mp4)
-
-![Pantip Animation Demo](https://github.com/korrio/pantip-clone-nextjs/out/pantip-ui-60-1fps.mp4)
-
-
+[https://user-images.githubusercontent.com/126239/151127893-5c98ba8d-c431-4a25-bb1f-e0b33645a2b6.mp4](https://github-production-user-asset-6210df.s3.amazonaws.com/2325299/471358563-81c9cb9b-ac96-4145-bdeb-71c406abb3d0.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250728%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250728T064257Z&X-Amz-Expires=300&X-Amz-Signature=21ff807938ac391f98897c7036d4d037f4be4ec05b902965aae989ab5a9a0e57&X-Amz-SignedHeaders=host)
 
 ## Project Highlights
 
