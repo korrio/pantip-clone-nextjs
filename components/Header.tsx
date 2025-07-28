@@ -25,13 +25,13 @@ function Header() {
             แท็ก
           </Link>
           
-          <button className="hidden cursor-pointer border-r border-gray-900 p-3 hover:bg-[#3c3963] lg:inline" aria-label="กิจกรรม">
+{/*          <button className="hidden cursor-pointer border-r border-gray-900 p-3 hover:bg-[#3c3963] lg:inline" aria-label="กิจกรรม">
             กิจกรรม
           </button>
           
           <button className="hidden cursor-pointer border-r border-gray-900 p-3 hover:bg-[#3c3963] lg:inline" aria-label="แลกพอยต์">
             แลกพอยต์
-          </button>
+          </button>*/}
           
           <Link href="/remotion" className="hidden cursor-pointer border-r border-gray-900 p-3 hover:bg-[#3c3963] lg:inline" aria-label="Claude Animation">
             🎬 Claude
