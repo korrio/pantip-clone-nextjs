@@ -33,6 +33,14 @@ function Header() {
             แลกพอยต์
           </button>
           
+          <Link href="/remotion" className="hidden cursor-pointer border-r border-gray-900 p-3 hover:bg-[#3c3963] lg:inline" aria-label="Claude Animation">
+            🎬 Claude
+          </Link>
+          
+          <Link href="/pantip-remotion" className="hidden cursor-pointer border-r border-gray-900 p-3 hover:bg-[#3c3963] lg:inline" aria-label="Pantip Animation">
+            🇹🇭 Pantip
+          </Link>
+          
           <button className="hidden cursor-pointer border-r border-gray-900 p-3 hover:bg-[#3c3963] lg:inline" aria-label="อื่นๆ">
             อื่นๆ
           </button>
