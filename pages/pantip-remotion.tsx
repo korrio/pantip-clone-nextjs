@@ -48,7 +48,7 @@ const PantipRemotionPage: React.FC = () => {
         </div>
 
         {/* Navigation & Controls */}
-        <div className="absolute top-6 right-6 z-20">
+        <div className="hidden absolute top-6 right-6 z-20">
           <div className="flex gap-3">
             <button
               onClick={() => window.location.href = '/'}
